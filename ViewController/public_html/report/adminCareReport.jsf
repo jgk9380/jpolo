@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="我关心的报表" id="d1">
+        <af:form id="f1">
+            <af:selectManyShuttle label="我关心的报表" id="sms1" value="#{reportAdmin.adminCareReport.selectReport}"
+                                  leadingHeader="可选：" trailingHeader="已选：">
+                <f:selectItems value="#{reportAdmin.adminCareReport.allCompleteReport}" id="si1"/>
+            </af:selectManyShuttle>
+            <af:button text="提交" id="b1" actionListener="#{reportAdmin.adminCareReport.save}"/>
+        </af:form>
+    </af:document>
+</f:view>

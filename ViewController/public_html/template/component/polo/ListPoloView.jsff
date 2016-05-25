@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>showView</description>
+                <!--显示poloView的内容及相关操作-->
+                <attribute>
+                    <attribute-name>poloView</attribute-name>
+                    <attribute-class>jpolo.iface.view.IPoloView</attribute-class>
+                    <required>true</required>
+                </attribute>
+            </component>
+        </af:xmlContent>
+        <af:resource type="javascript">
+          function handleTableDoubleClick(evt) {
+              var table = evt.getSource();
+              AdfCustomEvent.queue(table, "TableDoubleClickEvent", 
+              {
+              },
+true);
+              evt.cancel();
+          }
+        </af:resource>
+        <af:group id="g1">
+            <af:button text="导出" id="dc_b5">
+                <af:exportCollectionActionListener type="excelHTML" exportedId="t1"/>
+            </af:button>
+            <af:table value="#{attrs.poloView.poloList}" var="row" rowBandingInterval="0" id="t1" rowSelection="single"
+                      selectionListener="#{poloViewProxy.poloSelectListener}">
+                <af:clientListener method="handleTableDoubleClick" type="dblClick"/>                 
+                <af:serverListener type="TableDoubleClickEvent" method="#{poloViewProxy.handlePoloDBLClick}"/>
+                 
+                <af:forEach items="#{attrs.poloView.viewBuilder.tableShowFields}" var="name">
+                    <af:column id="c1" headerText="#{attrs.poloView.PMeta.getFMeta(name).label}">
+                        <af:outputText value="#{row.getPoloField(name).value}" id="ot1"/>
+                    </af:column>
+                </af:forEach>
+            </af:table>
+        </af:group>
+    </af:componentDef>
+</ui:composition>

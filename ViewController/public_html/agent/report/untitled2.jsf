@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="untitled2.jsf" id="d1">
+        <af:form id="f1">
+            <af:inputListOfValues label="Label 1" popupTitle="Search and Result Dialog" id="ilov1"/>
+            <af:inputComboboxListOfValues label="Label 1" popupTitle="Search and Result Dialog" id="iclov1"
+                                          value="#{agentReport.beneficialTable.channel}">
+                <af:autoSuggestBehavior suggestItems="#{agentReport.beneficialTable.suggestChannelItems}"    maxSuggestedItems="20"/>
+            </af:inputComboboxListOfValues>
+        </af:form>
+    </af:document>
+</f:view>

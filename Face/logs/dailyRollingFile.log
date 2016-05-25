@@ -1,0 +1,4 @@
+[2015-09-30 16:17:54 INFO ] [main] {test.log4j.Externalxmltest:19}-Here is some INFO
+[2015-09-30 16:17:54 WARN ] [main] {test.log4j.Externalxmltest:21}-Here is some WARN
+[2015-09-30 16:17:54 ERROR] [main] {test.log4j.Externalxmltest:23}-Here is some ERROR
+[2015-09-30 16:17:54 FATAL] [main] {test.log4j.Externalxmltest:25}-Here is some FATAL

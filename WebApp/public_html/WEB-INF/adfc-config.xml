@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="GBK" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+    <view id="main">
+        <page>/main.jsf</page>
+    </view>
+    <view id="login">
+        <page>/login.jsf</page>
+    </view>
+    <control-flow-rule id="__1">
+        <from-activity-id>*</from-activity-id>
+        <control-flow-case id="__2">
+            <from-outcome>main</from-outcome>
+            <to-activity-id>main</to-activity-id>
+        </control-flow-case>
+        <control-flow-case id="__3">
+            <from-outcome>login</from-outcome>
+            <to-activity-id>login</to-activity-id>
+        </control-flow-case>
+    </control-flow-rule>
+    <managed-bean id="__9">
+        <managed-bean-name>sessionManager</managed-bean-name>
+        <managed-bean-class>web.WebSessionManager</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+</adfc-config>

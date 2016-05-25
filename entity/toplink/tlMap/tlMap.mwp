@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="GBK"?>
+<project type="relational">
+   <name>tlMap</name>
+   <product-version>12.1.3.0.41.140521.1008</product-version>
+   <schema-version>8.0</schema-version>
+   <defaults-policy type="relational">
+      <use-method-accessing>false</use-method-accessing>
+      <caching-policy>
+         <cache-expiry/>
+      </caching-policy>
+      <cache-all-statements>false</cache-all-statements>
+      <bind-all-parameters>true</bind-all-parameters>
+   </defaults-policy>
+   <deployment-xml-path>META-INF/</deployment-xml-path>
+   <database>
+      <platform-name>Oracle11</platform-name>
+      <deployment-login>
+         <driver-class>oracle.jdbc.OracleDriver</driver-class>
+         <url>jdbc:oracle:thin:@130.34.22.3:1521:ora11g</url>
+         <user-name>jemtest</user-name>
+         <password>A2AA300C12827E5C00E28EA940767BE2</password>
+         <save-password>true</save-password>
+      </deployment-login>
+      <development-login>jemtest</development-login>
+   </database>
+   <table-repository/>
+   <sequencing/>
+   <table-generation>
+      <default-primary-key-name>ID</default-primary-key-name>
+      <primary-key-search-pattern>*ID</primary-key-search-pattern>
+   </table-generation>
+</project>

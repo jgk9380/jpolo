@@ -1,0 +1,63 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:cache="http://www.springframework.org/schema/cache" 
+       xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:jpa="http://www.springframework.org/schema/data/jpa"  
+       
+       xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-4.0.xsd                
+       http://www.springframework.org/schema/aop                http://www.springframework.org/schema/aop/spring-aop-4.0.xsd                
+       http://www.springframework.org/schema/context                http://www.springframework.org/schema/context/spring-context-4.0.xsd                
+       http://www.springframework.org/schema/tx                http://www.springframework.org/schema/tx/spring-tx-4.0.xsd                
+       http://www.springframework.org/schema/cache         http://www.springframework.org/schema/cache/spring-cache-4.0.xsd
+       http://www.springframework.org/schema/data/jpa          http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+    <!-- 1 
+        1)开启注解自动配置组件的自动扫描 (@Component是所有受Spring管理组件的通用形式)
+          @Repository、@Service和 @Controller则是@Component的细化，
+          用来表示更具体的用例(例如，分别对应了持久化层、服务层和表现层)
+        2)把use-default-filters属性設為false，意即在base-package所有被宣告為@Component和@Configuration等target Class
+          不予註冊為bean，由filter子標籤代勞。
+          Use-dafault-filters=”false”的情况下： <context:exclude-filter>指定的不扫描，
+                                                <context:include-filter>指定的扫描
+     -->
+    <context:component-scan base-package="jpa" use-default-filters="false">
+        <!-- 只扫描Repository标注的类 -->
+        <!-- <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" /> 
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" /> -->
+    </context:component-scan>
+   
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@130.34.22.3:1521:ora11g"/>
+        <property name="username" value="jemtest"/>
+        <property name="password" value="jemtest"/>
+    </bean>
+ 
+    <!--3 Spring整合jpa -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="persistenceUnitName" value="entity"/>
+        <!--<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"/>-->
+        <!--<property name="loadTimeWeaver">
+            <bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver"/>
+        </property>-->
+        <property name="jpaPropertyMap">
+            <map>
+                <entry key="eclipselink.weaving" value="false"/>
+            </map>
+        </property>
+    </bean>
+    <!--4 事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+    <!--5 采用注释的方式管理事务-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <bean id="emfp" class="assist.EntityManagerFactoryProxyFromSpring">
+        <!-- 自己写的dao数据访问类 -->
+        <!--<property name="entityManagerFactory" ref="entityManagerFactory"/>-->
+        <!-- 这儿不加这个property执行时会报错，提示加上-->
+    </bean>
+</beans>
+   

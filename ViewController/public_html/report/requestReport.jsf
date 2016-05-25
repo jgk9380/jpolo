@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="requestReport.jsf" id="d1">
+        <af:form id="f1">
+            <af:declarativeComponent id="dce" viewId="/template/component/polo/EditPoloField.jsff">
+                <f:attribute name="field" value="#{reportAdmin.requestReportPolo.getPoloField('reportName')}"/>
+            </af:declarativeComponent>
+            <af:declarativeComponent id="dc4" viewId="/template/component/polo/EditPoloField.jsff">
+                <f:attribute name="field" value="#{reportAdmin.requestReportPolo.getPoloField('type')}"/>
+            </af:declarativeComponent>
+            <af:declarativeComponent id="dc5" viewId="/template/component/polo/EditPoloField.jsff">
+                <f:attribute name="field" value="#{reportAdmin.requestReportPolo.getPoloField('useType')}"/>
+            </af:declarativeComponent>
+            <af:declarativeComponent id="dc6" viewId="/template/component/polo/EditPoloField.jsff">
+                <f:attribute name="field" value="#{reportAdmin.requestReportPolo.getPoloField('cycle')}"/>
+            </af:declarativeComponent>
+            <af:declarativeComponent id="dc1" viewId="/template/component/polo/EditPoloField.jsff">
+                <f:attribute name="field" value="#{reportAdmin.requestReportPolo.getPoloField('remarkDesc')}"/>
+            </af:declarativeComponent>
+            <af:declarativeComponent id="dc2" viewId="/template/component/polo/EditPoloField.jsff">
+                <f:attribute name="field" value="#{reportAdmin.requestReportPolo.getPoloField('paramsDesc')}"/>
+            </af:declarativeComponent>
+            <af:declarativeComponent id="dc3" viewId="/template/component/polo/EditPoloField.jsff">
+                <f:attribute name="field" value="#{reportAdmin.requestReportPolo.getPoloField('fieldsDesc')}"/>
+            </af:declarativeComponent>
+            <af:button text="提交" id="b1" action="#{reportAdmin.reportRequestSubmit}"/>
+        </af:form>
+    </af:document>
+    <!--oracle-jdev-comment:preferred-managed-bean-name:reportAdmin-->
+</f:view>

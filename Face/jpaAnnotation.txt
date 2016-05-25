@@ -1,0 +1,89 @@
+原文地址：@JoinTable和@JoinColumn作者：雪后DE阳光
+默认情况下，JPA 持续性提供程序在映射多对多关联（或在单向的一对多关联中）的拥有方上的实体关联时使用一个连接表。连接表名称及其列名均在默认情况下指定，且 JPA 持续性提供程序假设：在关系的拥有方上的实体主表中，每个主键列有一个连接列。
+通过表关联的方式来映射一对多或者多对多的关系时，要使用@JoinTable这个标记。该标记的定义如下所示。
+@Target({METHOD, FIELD})
+public @interface JoinTable {
+String name() default "";
+String catalog() default "";
+String schema() default "";
+JoinColumn[] joinColumns() default {};
+JoinColumn[] inverseJoinColumns() default {};
+UniqueConstraint[] uniqueConstraints default {};
+}
+在使用此@JoinTable标记时，需要注意以下几个问题。
+         该标记与@Table注释类似，用于标注用于关联的表。可以标注在方法或者属性上，属性catalog、schema和uniqueConstraint与@Table注释中的属性意义类似，请读者参阅@Table注释说明的部分。
+       name属性为连接两个表的表名称。若不指定，则使用默认的表名称如下所示。
+“表名1”+“_”+“表名2”。
+例如以上的代码中，如果不指定name的名称，默认的保存关系的名称如下所示。
+“customer_address”。
+l         joinColumns属性表示，在保存关系中的表中，所保存关联关系的外键的字段。并配合@JoinColumn标记使用。
+例如以下的映射配置，表示字段customer_id为外键关联到customer表中的id字段。
+joinColumns={
+         @JoinColumn(name="customer_id",referencedColumnName="id")
+}
+l         inverseJoinColumns属性与joinColumns属性类似，它保存的是保存关系的另一个外键字段。
+例如以下的映射配置，表示字段address_id为外键关联到address表中的id字段。
+inverseJoinColumns={
+         @JoinColumn(name="address_id",referencedColumnName="id")
+}
+提示：@JoinTable不仅能够定义一对多的关联，也可以定义多对多表的关联
+@JoinColumn
+默认情况下，在实体关联中，JPA 持续性提供程序使用一个基于现有名称（如字段或属性名称）的数据库模式，以便它可以自动确定要使用的单个连接列（包含外键的列）。
+在以下条件下使用 @JoinColumn
+@JoinColumn 属性
+属性	必需	说明
+columnDefinition
+可选
+
+默认值：空 String。
+JPA 使用最少量 SQL 创建一个数据库表列。
+如果需要使用更多指定选项创建列，请将 columnDefinition 设置为在针对列生成 DDL 时希望 JPA 使用的 String SQL 片断。
+insertable
+可选
+
+默认值：true。
+默认情况下，JPA 持续性提供程序假设它可以插入到所有表列中。
+如果该列为只读，请将 insertable 设置为 false。
+name
+可选
+
+默认值：如果使用一个连接列，则 JPA 持续性提供程序假设外键列的名称是以下名称的连接：
+引用关系属性的名称 +“_”+ 被引用的主键列的名称。
+引用实体的字段名称 +“_”+ 被引用的主键列的名称。
+如果实体中没有这样的引用关系属性或字段（请参阅 @JoinTable），则连接列名称格式化为以下名称的连接：实体名称 +“_”+ 被引用的主键列的名称。
+这是外键列的名称。如果连接针对“一对一”或“多对一”实体关系，则该列位于源实体的表中。如果连接针对“多对多”实体关系，则该列位于连接表（请参阅 @JoinTable）中。
+如果连接列名难于处理、是一个保留字、与预先存在的数据模型不兼容或作为数据库中的列名无效，请将 name 设置为所需的 String 列名。
+nullable
+可选
+
+默认值：true。
+默认情况下，JPA 持续性提供程序假设允许所有列包含空值。
+如果不允许该列包含空值，请将 nullable 设置为 false。
+referencedColumnName
+可选
+
+默认值：如果使用一个连接列，则 JPA 持续性提供程序假设在实体关系中，被引用的列名是被引用的主键列的名称。
+如果在连接表（请参阅 @JoinTable）中使用，则被引用的键列位于拥有实体（如果连接是反向连接定义的一部分，则为反向实体）的实体表中。
+要指定其他列名，请将 referencedColumnName 设置为所需的 String 列名。
+table
+可选
+
+默认值：JPA 持续性提供程序假设实体的所有持久字段存储到一个名称为实体类名称的数据库表中（请参阅 @Table）。
+如果该列与辅助表关联（请参阅 @SecondaryTable），请将 name 设置为相应辅助表名称的 String 名称，如示例 1-8 所示。
+unique
+可选
+
+默认值：false。
+默认情况下，JPA 持续性提供程序假设允许所有列包含重复值。
+如果不允许该列包含重复值，请将 unique 设置为 true。
+updatable
+可选
+
+默认值：true。
+默认情况下，JPA 持续性提供程序假设它可以更新所有表列。
+如果该列为只读，则将 updatable 设置为 false
+
+ 
+ 下例显示了如何使用此批注使 JPA 将数据库表 Employee 列 ADDR_ID 用作连接列。
+ 
+@Entity public class Employee implements Serializable { ... @ManyToOne @JoinColumn(name="ADDR_ID") public Address getAddress() { return address; } }

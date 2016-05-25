@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>editPolo</description>
+                <!--编辑polo的字段，根据字段类型确定编辑类型-->
+                <attribute>
+                    <attribute-name>field</attribute-name>
+                    <attribute-class>jpolo.iface.polo.IPoloField</attribute-class>
+                    <required>true</required>
+                </attribute>
+            </component>
+        </af:xmlContent>
+        <af:group id="g#{attrs.field.meta.name}" >
+            <af:group id="g1#{attrs.field.meta.name}" rendered="#{!attrs.field.meta.selectAble}">
+                <af:inputText label="#{attrs.field.meta.label}:" value="#{attrs.field.value}"
+                              id="i#{attrs.field.meta.name}" rendered="#{attrs.field.meta.type=='String'}"
+                              labelStyle="width:2cm" contentStyle="width:3cm"/>
+                <af:inputText label="#{attrs.field.meta.label}:" value="#{attrs.field.value}"
+                              id="i#{attrs.field.meta.name}" rendered="#{attrs.field.meta.type=='Clob'}"
+                              labelStyle="width:2cm"  rows="3" columns="100"/>
+                <af:inputNumberSpinbox label="#{attrs.field.meta.label}:" value="#{attrs.field.value}"
+                                       id="g#{attrs.field.meta.name}" rendered="#{attrs.field.meta.type=='Number'}"
+                                       labelStyle="width:2cm" contentStyle="width:1cm"/>
+                <af:inputDate label="#{attrs.field.meta.label}:" value="#{attrs.field.value}"
+                              id="ins#{attrs.field.meta.name}" rendered="#{attrs.field.meta.type=='Date'}"
+                              labelStyle="width:2cm" contentStyle="width:3cm"/>
+                <af:selectBooleanCheckbox label="#{attrs.field.meta.label}:" value="#{attrs.field.value}"
+                                          id="sbc#{attrs.field.meta.name}" rendered="#{attrs.field.meta.type=='Boolea'}"
+                                          labelStyle="width:2cm" contentStyle="width:3cm"/>
+            </af:group>
+            <af:group id="g2#{attrs.field.meta.name}" rendered="#{attrs.field.meta.selectAble}">
+                <af:selectManyShuttle label="#{attrs.field.meta.label}:" value="#{attrs.field.value}"
+                                      id="sms#{attrs.field.meta.name}" rendered="#{attrs.field.meta.type=='Many'}"
+                                      trailingHeader="已选" leadingHeader="可选" labelStyle="width:2cm"
+                                      contentStyle="width:3cm" layout="horizontal">
+                    <f:selectItems value="#{attrs.field.selectItem}" id="smssi#{attrs.field.meta.name}"/>
+                </af:selectManyShuttle>
+                <af:selectOneChoice label="#{attrs.field.meta.label}:" labelStyle="width:2cm" contentStyle="width:3cm"
+                                    value="#{attrs.field.value}" id="socx#{attrs.field.meta.name}"
+                                    rendered="#{not(attrs.field.meta.type=='Many')}" unselectedLabel="请选择：">
+                    <f:selectItems value="#{attrs.field.selectItem}" id="socsi#{attrs.field.meta.name}"/>
+                </af:selectOneChoice>
+            </af:group>
+        </af:group>
+    </af:componentDef>
+</ui:composition>

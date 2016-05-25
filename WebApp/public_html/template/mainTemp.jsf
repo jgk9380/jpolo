@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<af:pageTemplateDef xmlns:af="http://xmlns.oracle.com/adf/faces/rich" var="attrs" definition="private"
+                    xmlns:afc="http://xmlns.oracle.com/adf/faces/rich/component">
+    <af:form id="pt_f1">
+        <af:panelGroupLayout id="pt_pgl1" inlineStyle="width:100vw; height:100vh;" halign="center" layout="vertical">
+            <!--<af:panelGroupLayout id="pt_pgl2" inlineStyle="width:100vw;" layout="vertical" halign="center">
+                    <af:outputText value="盐城联通实名制回访" id="pt_ot1" inlineStyle="font-size:0.8cm; "/>
+                </af:panelGroupLayout>-->
+            <af:panelGridLayout id="pt_pgl2" inlineStyle="height:16vh; width:100vw;">
+                <af:gridRow marginTop="5px" height="95%" id="pt_gr2">                 
+                    <af:gridCell marginStart="5px" id="pt_gc5" halign="center" valign="middle" columnSpan="3">
+                        <af:outputText value="盐城联通实名制回访" id="pt_ot1" inlineStyle="font-size:0.8cm; "/>
+                    </af:gridCell>                  
+                </af:gridRow>
+                <af:gridRow marginTop="5px" height="5%" marginBottom="5px" id="pt_gr3">
+                    <af:gridCell marginStart="5px" width="20%" id="pt_gc1" valign="bottom"/>
+                    <af:gridCell marginStart="5px" width="60%" id="pt_gc2"/>
+                    <af:gridCell marginStart="5px" width="20%" marginEnd="5px" id="pt_gc3" valign="bottom" halign="center">
+                        <af:link text="欢迎您：#{sessionManager.loginUser.userName}" action="#{sessionManager.loginUser.loginOutAction}" id="l1"/>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+            <af:panelGroupLayout id="menAndNP" inlineStyle="width:98vw;" layout="horizontal" halign="left" valign="top">
+                <af:facetRef facetName="menuAndNPHead"/>
+            </af:panelGroupLayout>
+            <af:separator id="pt_s2"/>
+            <af:panelGroupLayout id="pageScope" inlineStyle="height:77vh; width:98vw;" layout="vertical" halign="start">
+                <af:facetRef facetName="body"/>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pgl5" inlineStyle="height:3vh; width:98vw;  background-color:#fcf8f0;" layout="vertical" halign="right">
+                <af:outputText value="中国联通盐城分公司 　　　　　  20150621　　　　　　　" id="pt_ot3"/>
+            </af:panelGroupLayout>
+        </af:panelGroupLayout>
+    </af:form>
+    <af:xmlContent>
+        <afc:component>
+            <afc:description/>
+            <afc:display-name>mainTemp</afc:display-name>
+            <afc:facet>
+                <afc:description>页面主体</afc:description>
+                <afc:facet-name>body</afc:facet-name>
+            </afc:facet>
+            <afc:facet>
+                <afc:description>页面菜单</afc:description>
+                <afc:facet-name>menuAndNPHead</afc:facet-name>
+            </afc:facet>
+        </afc:component>
+    </af:xmlContent>
+</af:pageTemplateDef>

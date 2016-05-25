@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>showView</description>
+                <attribute>
+                    <attribute-name>view</attribute-name>
+                    <attribute-class>jpolo.iface.view.IView</attribute-class>
+                    <required>true</required>
+                </attribute>
+            </component>
+        </af:xmlContent>
+        <af:group id="g1">
+            <af:button text="查询" id="b2"/>
+            <af:button text="新增" id="b3"/>
+            <af:button text="更新数据" id="dc_b5"/>
+            <af:button text="选择显示列" id="dc_b4"/>
+            <af:button text="批量导入" id="dc_b3"/>
+            <af:button text="删除" id="dc_b2"/>
+            <af:button text="保存" id="dc_b1"/>
+            <af:button text="导出" id="b1"/>
+            <af:table value="#{attrs.view.list}" var="row" rowBandingInterval="0" id="t1" rowSelection="single">
+                <af:forEach items="#{attrs.view.PMeta.FNames}" var="name">
+                    <af:column id="c1" headerText="#{attrs.view.PMeta.getFMeta(name).label}">
+                        <af:outputText value="#{row.getField(name).value}" id="ot1"/>
+                    </af:column>
+                </af:forEach>
+            </af:table>
+        </af:group>
+    </af:componentDef>
+</ui:composition>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>xdfg</description>
+            </component>
+        </af:xmlContent>
+        <af:group id="paramGroup">
+            <af:panelGroupLayout id="pgl4" layout="horizontal" rendered="#{!(reportAdmin.currentBuildingReport==null)}">
+                <af:forEach items="#{reportAdmin.currentBuildingReport.reportParams}" var="param">
+                    <af:link text="#{param.name}"  actionListener="#{reportAdmin.paramSelect}" id="d_1">
+                        <af:setActionListener to="#{reportAdmin.currentParam}" from="#{param}"/>
+                    </af:link>
+                    <h:outputLabel value="　　" id="dc_ol1"/>
+                </af:forEach>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout rendered="#{!(reportAdmin.currentParam==null)}" id="pgParam" layout="vertical"
+                                 inlineStyle="width:60vw;">
+                <af:panelFormLayout id="pfParam">
+                    <af:inputText label="名称：" id="it17"  value="#{reportAdmin.currentParam.name}"/>
+                    <af:inputText label="标签：" id="it12" value="#{reportAdmin.currentParam.label}"/>
+                    <af:declarativeComponent id="dc2" viewId="/template/component/polo/EditObjectField.jsff">
+                        <f:attribute name="object" value="#{reportAdmin.currentParam}"/>
+                        <f:attribute name="name" value="type"/>
+                    </af:declarativeComponent>
+                    <af:declarativeComponent id="dc4" viewId="/template/component/polo/EditObjectField.jsff">
+                        <f:attribute name="object" value="#{reportAdmin.currentParam}"/>
+                        <f:attribute name="name" value="isSingle"/>
+                    </af:declarativeComponent>
+                    <af:declarativeComponent id="dc5" viewId="/template/component/polo/EditObjectField.jsff">
+                        <f:attribute name="object" value="#{reportAdmin.currentParam}"/>
+                        <f:attribute name="name" value="selectScopeSql"/>
+                    </af:declarativeComponent>
+                </af:panelFormLayout>
+            </af:panelGroupLayout>
+        </af:group>
+    </af:componentDef>
+</ui:composition>
+

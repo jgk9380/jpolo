@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="GBK" ?>
+<declarativeCompDefs xmlns="http://xmlns.oracle.com/adf/faces/rich/declarativecomp">
+  <declarativecomp-jsp-ui-def>/inputValue.jsf</declarativecomp-jsp-ui-def>
+  <declarativecomp-jsp-ui-def>/test.jsf</declarativecomp-jsp-ui-def>
+  <declarativecomp-taglib>
+    <taglib-name>joe</taglib-name>
+    <taglib-uri>http://jdf.object.edit</taglib-uri>
+    <taglib-prefix>joe</taglib-prefix>
+  </declarativecomp-taglib>
+</declarativeCompDefs>

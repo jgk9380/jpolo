@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>outputProperty</description>
+                <attribute>
+                    <attribute-name>prop</attribute-name>
+                    <attribute-class>interfaces.Entity.IProperty</attribute-class>
+                    <required>true</required>
+                </attribute>
+            </component>
+        </af:xmlContent>
+        <af:group id="dc_g1">
+            <c:set var="label" value="#{metaInfo.getEntityPropTitle(attrs.prop.entity,attrs.prop.meta.name)}"/>
+            <c:set var="id" value="#{attrs.prop.meta.name}"/>
+            <c:set var="evalue" value="#{attrs.prop.value}"/>
+            <c:set var="opropType" value="#{attrs.prop.meta.propType}"/>
+            <c:set var="vType" value="#{attrs.prop.meta.valueType}"/>
+            <af:group id="dc_g2" rendered="#{opropType=='Simple'}">
+                <af:outputText id="dc_ot4" value="#{evalue}" rendered="#{vType=='string'}"/>
+                <af:outputText id="dc_ot3" value="#{evalue}" rendered="#{vType=='number'}"/>
+                <af:outputText id="dc_ot5" value="#{evalue}" rendered="#{vType=='date'}"/>
+                <af:selectBooleanCheckbox id="dc_sbc1" label=" " value="#{attrs.prop.value}" disabled="true" rendered="#{vType=='bool'}"/>
+                <!--<af:richTextEditor label="#{label}:" id="#{id}d" value="#{evalue}" toolboxLayout="none" disabled="true"
+                                       inlineStyle="grid-row-sizing:fit-content; grid-column-sizing:fit-content;" rendered="#{vType=='text'}"/>-->
+            </af:group>
+            <!--<c:if test="#{propType=='Entity'}">
+                <af:inputText label="#{label}:" id="#{id}" value="#{evalue}" disabled="#{attrs.inputDisable}"/>
+            </c:if>
+            <c:if test="#{propType=='View'}">
+                <af:inputText label="#{label}:" id="#{id}" value="#{evalue}" disabled="#{attrs.inputDisable}"/>
+            </c:if>-->
+        </af:group>
+    </af:componentDef>
+</ui:composition>

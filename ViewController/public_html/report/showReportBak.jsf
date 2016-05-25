@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:c="http://java.sun.com/jsp/jstl/core"
+        xmlns:f="http://java.sun.com/jsf/core">
+    <af:document title="showReport.jsf" id="d1">
+        <af:resource type="javascript">
+          function enforcePreventUserInput(evt) {
+              var popup = AdfPage.PAGE.findComponentByAbsoluteId('running');
+              if (popup != null) {
+                  AdfPage.PAGE.addBusyStateListener(popup, handleBusyState);
+                  evt.preventUserInput();
+              }
+          }
+          //JavaScript callback handler
+          function handleBusyState(evt) {
+              var popup = AdfPage.PAGE.findComponentByAbsoluteId('running');
+              if (popup != null) {
+                  if (evt.isBusy()) {
+                      popup.show();
+                  }
+                  else {
+                      popup.hide();//remove busy state listener (important !!!) 
+                      AdfPage.PAGE.removeBusyStateListener(popup, handleBusyState);
+                  }
+              }
+          }
+        </af:resource>
+        <af:form id="reportForm">
+            <af:popup id="running" contentDelivery="immediate">
+                <af:declarativeComponent id="x55" viewId="./subview/queryingDialog.jsff"/>
+            </af:popup>
+            <af:panelGroupLayout id="reportSelect" layout="horizontal">
+                <af:outputText value="请选择报表：" id="ot1"/>
+                <af:forEach items="#{reportAdmin.reportList}" var="report">
+                    <af:link text="#{report.reportName}" actionListener="#{reportAdmin.ReportSelect}"
+                             id="d_#{report.id}">
+                        <af:setActionListener to="#{reportAdmin.currentShowReport}" from="#{report}"/>
+                    </af:link>
+                    <af:outputText value="　" id="ot2"/>
+                </af:forEach>
+            </af:panelGroupLayout>
+            <af:group id="dc_g2" rendered="#{reportAdmin.reportHolder.report.reportParams!=null}">
+                <af:forEach items="#{reportAdmin.reportHolder.report.reportParams}" var="rParam">
+                    <c:if test="#{!reportAdmin.reportHolder.isSelectAble(rParam)}">
+                        <c:if test="#{rParam.type=='String'}">
+                            <af:inputText label="#{rParam.label}:"
+                                          value="#{reportAdmin.reportHolder.paramMap[rParam.name]}"
+                                          id="it#{rParam.id}"/>
+                        </c:if>
+                        <c:if test="#{rParam.type=='Date'}">
+                            <af:inputDate label="#{rParam.label}:"
+                                          value="#{reportAdmin.reportHolder.paramMap[rParam.name]}"
+                                          id="id#{rParam.id}"/>
+                        </c:if>
+                        <c:if test="#{rParam.type=='Number'}">
+                            <af:inputNumberSpinbox label="#{rParam.label}:"
+                                                   value="#{reportAdmin.reportHolder.paramMap[rParam.name]}"
+                                                   id="id#{rParam.id}"/>
+                        </c:if>
+                    </c:if>
+                    <c:if test="#{reportAdmin.reportHolder.isSelectAble(rParam)}">
+                        <c:if test="#{rParam.isSingle}">
+                            <af:selectOneChoice label="#{rParam.label}:" id="smc#{rParam.id}"
+                                                value="#{reportAdmin.reportHolder.paramMap[rParam.name]}">
+                                <f:selectItems value="#{reportAdmin.reportHolder.getSelectItemList(rParam)}"
+                                               id="si#{rParam.id}"/>
+                            </af:selectOneChoice>
+                        </c:if>
+                        <c:if test="#{!rParam.isSingle}">
+                            <af:selectManyChoice label="#{rParam.label}:" id="soc#{rParam.id}"
+                                                 value="#{reportAdmin.reportHolder.paramMap[rParam.name]}">
+                                <f:selectItems value="#{reportAdmin.reportHolder.getSelectItemList(rParam)}"
+                                               id="si#{rParam.id}"/>
+                            </af:selectManyChoice>
+                        </c:if>
+                    </c:if>
+                </af:forEach>
+            </af:group>
+            <af:button text="查询" action="#{reportAdmin.reportHolder.refresh}" partialSubmit="true" id="b5">
+                <af:clientListener method="enforcePreventUserInput" type="click"/>
+            </af:button>
+            <af:table var="row" rowBandingInterval="0" id="reportT" rowSelection="single"
+                      rendered="#{reportAdmin.reportHolder.reportValue!=null}"
+                      value="#{reportAdmin.reportHolder.reportValue}">
+                <?audit suppress oracle.adf.faces.compreqsummary?>
+                 
+                <?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                <af:column sortable="false" headerText="明细" id="c2">
+                    <af:link text="明细" id="l1" actionListener="#{reportAdmin.reportHolder.childQuery}"/>
+                </af:column>
+                <af:forEach items="#{reportAdmin.reportHolder.report.reportColumns}" var="rCol">
+                    <af:column sortable="false" headerText="#{rCol.headerText}" id="c5">
+                        <af:outputText value="#{row[rCol.name]}" id="ot#{rCol.name}"/>
+                        <f:facet name="footer">
+                            <af:outputText value="#{reportAdmin.reportHolder.getFooterValue(rCol)}"
+                                           id="otf#{rCol.name}"/>
+                        </f:facet>
+                    </af:column>
+                </af:forEach>
+                <af:column sortable="false" headerText="任务" id="c1">
+                    <af:link text="生成任务" id="dd"/>
+                </af:column>
+            </af:table>
+        </af:form>
+    </af:document>
+</f:view>

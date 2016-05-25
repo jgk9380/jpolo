@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <!-- TODO 目前所有组件多与ViewProxy耦合，需要解耦  导入未完成-->
+    <af:document title="显示视图" id="d1">
+        <af:form id="f1">
+            <af:popup childCreation="immediate" autoCancel="disabled" id="editViewBuilder"
+                      contentDelivery="lazyUncached">
+                <af:declarativeComponent id="dc4" viewId="/template/component/polo/editViewBuilder.jsff">
+                    <f:attribute name="viewBuilder" value="#{poloViewProxy.poloView.viewBuilder}"/>
+                </af:declarativeComponent>
+            </af:popup>
+            <af:popup childCreation="immediate" autoCancel="disabled" id="editCurrent" contentDelivery="lazyUncached">
+                <af:declarativeComponent id="dc1" viewId="/template/component/polo/EditPoloViewCurrentPolo.jsff">
+                    <f:attribute name="poloView" value="#{poloViewProxy.poloView}"/>
+                </af:declarativeComponent>
+            </af:popup>
+            <af:selectOneChoice label="请选择数据类型：" id="smc1" value="#{poloViewProxy.clazz}" unselectedLabel="请选择："
+                                immediate="true" autoSubmit="true" simple="false" mode="default">
+                <f:selectItems id="si1" value="#{poloViewProxy.classSelectItem}"/>
+            </af:selectOneChoice>
+            <af:button text="新增" id="dc_b6" action="#{poloViewProxy.newPolo}"/>
+            <af:button text="删除" id="dc_b2" action="#{poloViewProxy.deletePolo}"/>
+            <af:button text="编辑" id="dc_b4">
+                <af:showPopupBehavior popupId="editCurrent"/>
+            </af:button>
+            <af:button text="提交" id="b222" action="#{poloViewProxy.commit}"/>
+            <af:button text="取消" id="dc_b1" action="#{poloViewProxy.rollback}"/>
+            <af:button text="设置查询" id="b1">
+                <af:showPopupBehavior popupId="editViewBuilder"/>
+            </af:button>
+            <af:button text="重新装载" id="b2" action="#{poloViewProxy.refresh}"/>
+            <af:button text="数据刷新" id="b3" action="#{poloViewProxy.evictAll}"/>
+            <!--<af:button text="清理" id="b2" action="#{poloViewProxy.clear}"/>-->
+            <af:button text="导入" id="b33"/>
+            <af:declarativeComponent id="lpv" viewId="/template/component/polo/ListPoloView.jsff">
+                <f:attribute name="poloView" value="#{poloViewProxy.poloView}"/>
+            </af:declarativeComponent>
+        </af:form>
+    </af:document>
+</f:view>

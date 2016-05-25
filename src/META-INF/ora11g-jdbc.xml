@@ -1,0 +1,24 @@
+<?xml version = '1.0' encoding = 'GBK'?>
+<jdbc-data-source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://xmlns.oracle.com/weblogic/jdbc-data-source http://xmlns.oracle.com/weblogic/jdbc-data-source/1.3/jdbc-data-source.xsd"
+                  xmlns="http://xmlns.oracle.com/weblogic/jdbc-data-source">
+    <name>ora11g</name>
+    <jdbc-driver-params>
+        <url>jdbc:oracle:thin:@130.34.22.3:1521:ora11g</url>
+        <driver-name>oracle.jdbc.OracleDriver</driver-name>
+        <properties>
+            <property>
+                <name>user</name>
+                <value>jemtest</value>
+            </property>
+        </properties>
+        <password-encrypted>A2AA300C12827E5C00E28EA940767BE2</password-encrypted>
+    </jdbc-driver-params>
+    <jdbc-connection-pool-params>
+        <test-table-name>SQL SELECT 1 FROM DUAL</test-table-name>
+    </jdbc-connection-pool-params>
+    <jdbc-data-source-params>
+        <jndi-name>jdbc/ora11gDS</jndi-name>
+        <scope>Application</scope>
+    </jdbc-data-source-params>
+</jdbc-data-source>

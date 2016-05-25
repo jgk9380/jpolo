@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="benTable2.jsf" id="d1">
+        <af:form id="f1">
+            <af:popup childCreation="deferred" autoCancel="disabled" id="p1">
+                <af:dialog id="d2" title="选择表列">
+                    <f:facet name="buttonBar"/>
+                </af:dialog>
+            </af:popup>
+            <af:panelGroupLayout layout="horizontal" id="pgl2">
+                <af:selectOneChoice label="开始月份：" value="#{agentReport.beneficialTable.month}"
+                                    valueChangeListener="#{agentReport.beneficialTable.monthChangeLisener}"
+                                    autoSubmit="true" id="mSoc">
+                    <f:selectItems value="#{agentReport.selectItemListDeposit.monthSelectItemList}" id="si1"/>
+                </af:selectOneChoice>
+                <af:selectManyChoice label="状态：" value="#{agentReport.beneficialTable.channelStatusList}"
+                                     valueChangeListener="#{agentReport.beneficialTable.statusChangeLisener}"
+                                     autoSubmit="true" id="soc1">
+                    <f:selectItems value="#{agentReport.selectItemListDeposit.channelStatusSelectItemList}" id="si2"/>
+                </af:selectManyChoice>
+                <af:selectOneChoice label="业务单元：" autoSubmit="true" value="#{agentReport.beneficialTable.queryCity}"
+                                    valueChangeListener="#{agentReport.beneficialTable.cityChangeLisener}" id="citySoc"
+                                    unselectedLabel="无">
+                    <f:selectItems value="#{agentReport.selectItemListDeposit.citySelectItemList}" id="si4"/>
+                </af:selectOneChoice>
+                <af:spacer width="10" height="10" id="s2"/>
+                <af:selectOneChoice label="网格：" value="#{agentReport.beneficialTable.queryGrid}" autoSubmit="true"
+                                    valueChangeListener="#{agentReport.beneficialTable.gridChangeLisener}" id="gridSoc"
+                                    unselectedLabel="无" partialTriggers="citySoc">
+                    <f:selectItems value="#{agentReport.selectItemListDeposit.getGridSelectItemList(agentReport.beneficialTable.queryCity)}"
+                                   id="si3"/>
+                </af:selectOneChoice>
+                <af:inputText label="名称" id="it1" value="#{agentReport.beneficialTable.appendParam}"
+                              valueChangeListener="#{agentReport.beneficialTable.appendParamChangeLisener}"/>
+                <af:button text="查询" id="b1"></af:button>
+                <af:button text="导出" id="b2">
+                    <af:exportCollectionActionListener type="excelHTML" exportedId="t1"/>
+                </af:button>
+                <af:button text="选择输出列" id="b3">
+                    <af:showPopupBehavior popupId="p1"/>
+                </af:button>
+            </af:panelGroupLayout>
+            <af:table var="row" rowBandingInterval="0" id="t1" value="#{agentReport.beneficialTable.benfitTable2}"
+                      partialTriggers="::mSoc ::b1 ::soc1 ::citySoc ::gridSoc" rowSelection="single">
+                <af:column sortable="true" headerText="渠道ID" id="c1">
+                    <af:outputText value="#{row['chnl_id']}" id="ot1"/>
+                </af:column>
+                <af:column sortable="true" headerText="渠道" id="c40">
+                    <af:outputText value="#{row['chnl_name']}" id="ot40"/>
+                </af:column>
+                <af:column sortable="true" headerText="渠道经理" id="c41">
+                    <af:outputText value="#{row['agent_name']}" id="ot41"/>
+                </af:column>
+                <!-- pzyh,拍照用户,-->
+                <af:column sortable="true" headerText="拍照用户" id="c2">
+                    <af:outputText value="#{row['pzyh']}" id="ot2"/>
+                </af:column>
+                <!--pzsr,拍照收入,-->
+                <af:column sortable="true" headerText="拍照收入" id="c3">
+                    <af:outputText value="#{row['pzsr']}" id="ot3"/>
+                </af:column>
+                <!-- zbyh,指标用户,-->
+                <af:column sortable="true" headerText="指标用户" id="c4">
+                    <af:outputText value="#{row['zbyh']}" id="ot4"/>
+                </af:column>
+                <!--    zbyh_old,其中存量用户,-->
+                <af:column sortable="true" headerText="其中存量用户" id="c5">
+                    <af:outputText value="#{row['zbyh_old']}" id="ot5"/>
+                </af:column>
+                <!--      zbsr,指标收入,-->
+                <af:column sortable="true" headerText="指标收入" id="c6">
+                    <af:outputText value="#{row['zbsr']}" id="ot6"/>
+                </af:column>
+                <!--  zbsr_old,其中存量用户,-->
+                <af:column sortable="true" headerText="其中存量用户" id="c7">
+                    <af:outputText value="#{row['zbsr_old']}" id="ot7"/>
+                </af:column>
+                <!-- curr_photo_lm_counts syby,上月保有数,-->
+                <af:column sortable="true" headerText="上月保有数" id="c8">
+                    <af:outputText value="#{row['syby']}" id="ot8"/>
+                </af:column>
+                <!-- curr_photo_lm_charge sysr,上月保有收入,-->
+                <af:column sortable="true" headerText="上月保有收入" id="c9">
+                    <af:outputText value="#{row['sysr']}" id="ot9"/>
+                </af:column>
+                <!--  curr_new_lm_counts syxzyh,上月新增用户数,-->
+                <af:column sortable="true" headerText="上月新增用户数" id="c10">
+                    <af:outputText value="#{row['syxzyh']}" id="ot10"/>
+                </af:column>
+                <!--     0 syxzyh_fee,上月新增出帐用户数-->
+                <af:column sortable="true" headerText="上月新增出帐用户数" id="c11">
+                    <af:outputText value="#{row['syxzyh_fee']}" id="ot11"/>
+                </af:column>
+                <!--    curr_new_lm_charge syxzsr,上月新增用户收入,-->
+                <af:column sortable="true" headerText="上月新增用户收入" id="c12">
+                    <af:outputText value="#{row['syxzsr']}" id="ot12"/>
+                </af:column>
+                <!--curr_new_all_lm_counts syljyh ,上月累计新增用户,-->
+                <af:column sortable="true" headerText="上月累计新增用户" id="c13">
+                    <af:outputText value="#{row['syljyh']}" id="ot13"/>
+                </af:column>
+                <!--curr_new_all_lm_charge syljsr,上月累计新增收入,-->
+                <af:column sortable="true" headerText="上月累计新增收入" id="c14">
+                    <af:outputText value="#{row['syljsr']}" id="ot14"/>
+                </af:column>
+                <!--curr_photo_counts dyby,本月保有数,-->
+                <af:column sortable="true" headerText="本月保有数" id="c15">
+                    <af:outputText value="#{row['dyby']}" id="ot15"/>
+                </af:column>
+                <!--curr_photo_charge dysr,本月保有收入,-->
+                <af:column sortable="true" headerText="本月保有收入" id="c16">
+                    <af:outputText value="#{row['dysr']}" id="ot16"/>
+                </af:column>
+                <!--curr_new_counts dyxzyh,本月新增用户数,-->
+                <af:column sortable="true" headerText="本月新增用户数" id="c17">
+                    <af:outputText value="#{row['dyxzyh']}" id="ot17"/>
+                </af:column>
+                <!--0 dyxzyh_fee,本月新增出帐用户数-->
+                <af:column sortable="true" headerText="本月新增出帐用户数" id="c18">
+                    <af:outputText value="#{row['dyxzyh_fee']}" id="ot18"/>
+                </af:column>
+                <!--curr_new_charge dyxzsr,本月新增用户收入,-->
+                <af:column sortable="true" headerText="本月新增用户收入" id="c19">
+                    <af:outputText value="#{row['dyxzsr']}" id="ot19"/>
+                </af:column>
+                <!--      curr_new_all_counts dyljyh,累计新增出帐用户数,-->
+                <af:column sortable="true" headerText="累计新增出帐用户数" id="c20">
+                    <af:outputText value="#{row['dyljyh']}" id="ot20"/>
+                </af:column>
+                <!-- curr_new_all_charge dyljsr,累计新增收入,-->
+                <af:column sortable="true" headerText="累计新增收入" id="c21">
+                    <af:outputText value="#{row['dyljsr']}" id="ot21"/>
+                </af:column>
+                <!--byyh_rate,保有用户环比,-->
+                <af:column sortable="true" headerText="保有用户环比" id="c22">
+                    <af:outputText value="#{row['byyh_rate']}" id="ot22"/>
+                </af:column>
+                <!--bysr_rate,保有收入环比,-->
+                <af:column sortable="true" headerText="保有收入环比" id="c23">
+                    <af:outputText value="#{row['bysr_rate']}" id="ot23"/>
+                </af:column>
+                <!--xzyh_rate,月新增用户环比,-->
+                <af:column sortable="true" headerText="月新增用户环比" id="c24">
+                    <af:outputText value="#{row['xzyh_rate']}" id="ot24"/>
+                </af:column>
+                <!--'-' xzyh_fee_rate 月新增出帐用户环比   -->
+                <af:column sortable="true" headerText="月新增出帐用户环比" id="c25">
+                    <af:outputText value="#{row['xzyh_fee_rate']}" id="ot25"/>
+                </af:column>
+                <!--xzsr_rate,月新增收入环比,-->
+                <af:column sortable="true" headerText="月新增收入环比" id="c26">
+                    <af:outputText value="#{row['xzsr_rate']}" id="ot26"/>
+                </af:column>
+                <!--ljyh_rate,累计新增出帐数环比,    -->
+                <af:column sortable="true" headerText="累计新增出帐数环比" id="c27">
+                    <af:outputText value="#{row['ljyh_rate']}" id="ot27"/>
+                </af:column>
+                <!--ljxz_rate,累计新增收入环比 ,-->
+                <af:column sortable="true" headerText="累计新增收入环比" id="c28">
+                    <af:outputText value="#{row['ljxz_rate']}" id="ot28"/>
+                </af:column>
+                <!--pzyh_rate,拍照用户保有率,-->
+                <af:column sortable="true" headerText="拍照用户保有率" id="c29">
+                    <af:outputText value="#{row['pzyh_rate']}" id="ot29"/>
+                </af:column>
+                <!--pzsr_rate,拍照收入保有率，-->
+                <af:column sortable="true" headerText="拍照收入保有率" id="c30">
+                    <af:outputText value="#{row['pzsr_rate']}" id="ot30"/>
+                </af:column>
+                <!--curr_photo_charge photo_charge,存量收入，-->
+                <af:column sortable="true" headerText="存量收入" id="c31">
+                    <af:outputText value="#{row['photo_charge']}" id="ot31"/>
+                </af:column>
+                <!--curr_new_all_charge new_charge,新增收入,-->
+                <af:column sortable="true" headerText="新增收入" id="c32">
+                    <af:outputText value="#{row['new_charge']}" id="ot32"/>
+                </af:column>
+                <!--cost_value cost_value ,费用小计，含渠道费用及其他费用-->
+                <af:column sortable="true" headerText="费用小计，含渠道费用及其他费用" id="c33">
+                    <af:outputText value="#{row['cost_value']}" id="ot33"/>
+                </af:column>
+                <!--maoli_value,毛利额,收入-费用-->
+                <af:column sortable="true" headerText="毛利额" id="c34">
+                    <af:outputText value="#{row['maoli_value']}" id="ot34"/>
+                </af:column>
+                <!--maoli_rate,毛利率,毛率额/收入-->
+                <af:column sortable="true" headerText="毛利率" id="c35">
+                    <af:outputText value="#{row['maoli_rate']}" id="ot35"/>
+                </af:column>
+                <!--cost_rate,费用占收比,-->
+                <af:column sortable="true" headerText="费用占收比" id="c36">
+                    <af:outputText value="#{row['cost_rate']}" id="ot36"/>
+                </af:column>
+                <!--cost_comm_rate,其中佣金占收比,-->
+                <af:column sortable="true" headerText="其中佣金占收比" id="c37">
+                    <af:outputText value="#{row['cost_comm_rate']}" id="ot37"/>
+                </af:column>
+                <!--zbyh_rate,指标用户完成率,-->
+                <af:column sortable="true" headerText="指标用户完成率" id="c38">
+                    <af:outputText value="#{row['zbyh_rate']}" id="ot38"/>
+                </af:column>
+                <!--zbsr_rate ,指标收入完成率   -->
+                <af:column sortable="true" headerText="指标收入完成率" id="c39">
+                    <af:outputText value="#{row['zbsr_rate']}" id="ot39"/>
+                </af:column>
+            </af:table>
+        </af:form>
+    </af:document>
+</f:view>

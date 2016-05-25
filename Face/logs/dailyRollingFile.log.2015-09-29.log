@@ -1,0 +1,20 @@
+[2015-09-29 16:12:36 INFO ] [main] {test.log4j.Externalxmltest:16}-Here is some INFO
+[2015-09-29 16:12:36 WARN ] [main] {test.log4j.Externalxmltest:18}-Here is some WARN
+[2015-09-29 16:12:36 ERROR] [main] {test.log4j.Externalxmltest:20}-Here is some ERROR
+[2015-09-29 16:12:36 FATAL] [main] {test.log4j.Externalxmltest:22}-Here is some FATAL
+[2015-09-29 16:14:16 INFO ] [main] {test.log4j.Externalxmltest:16}-Here is some INFO
+[2015-09-29 16:14:16 WARN ] [main] {test.log4j.Externalxmltest:18}-Here is some WARN
+[2015-09-29 16:14:16 ERROR] [main] {test.log4j.Externalxmltest:20}-Here is some ERROR
+[2015-09-29 16:14:16 FATAL] [main] {test.log4j.Externalxmltest:22}-Here is some FATAL
+[2015-09-29 16:14:48 INFO ] [main] {test.log4j.Externalxmltest:16}-Here is some INFO
+[2015-09-29 16:14:48 WARN ] [main] {test.log4j.Externalxmltest:18}-Here is some WARN
+[2015-09-29 16:14:48 ERROR] [main] {test.log4j.Externalxmltest:20}-Here is some ERROR
+[2015-09-29 16:14:48 FATAL] [main] {test.log4j.Externalxmltest:22}-Here is some FATAL
+[2015-09-29 16:16:48 INFO ] [main] {test.log4j.Externalxmltest:19}-Here is some INFO
+[2015-09-29 16:16:48 WARN ] [main] {test.log4j.Externalxmltest:21}-Here is some WARN
+[2015-09-29 16:16:48 ERROR] [main] {test.log4j.Externalxmltest:23}-Here is some ERROR
+[2015-09-29 16:16:48 FATAL] [main] {test.log4j.Externalxmltest:25}-Here is some FATAL
+[2015-09-29 16:17:04 INFO ] [main] {test.log4j.Externalxmltest:19}-Here is some INFO
+[2015-09-29 16:17:04 WARN ] [main] {test.log4j.Externalxmltest:21}-Here is some WARN
+[2015-09-29 16:17:04 ERROR] [main] {test.log4j.Externalxmltest:23}-Here is some ERROR
+[2015-09-29 16:17:04 FATAL] [main] {test.log4j.Externalxmltest:25}-Here is some FATAL

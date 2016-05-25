@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+        xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <af:document title="applyReport.jsf" id="d1">
+        <af:resource type="javascript" source="/resources/js/cust.js"/>
+        <af:form id="form1">
+            <af:popup id="running" contentDelivery="immediate">
+                <af:dialog id="d2" type="none" title="正在查询，请稍等......." closeIconVisible="false" contentWidth="120">
+                    <af:image shortDesc=" ani" source="/resources/images/animbar.gif" id="i2"
+                              inlineStyle="width:250px;"/>
+                </af:dialog>
+            </af:popup>
+            <af:panelGroupLayout id="pgl1" layout="scroll" partialTriggers="b5 b6">
+                <af:group id="g1">
+                    <af:button text="未完成报表" actionListener="#{reportAdmin.initReport}" id="b5"
+                               rendered="#{sessionScope.wwc==true}">
+                        <f:attribute name="status" value="request"/>
+                        <af:setActionListener from="true" to="#{sessionScope.ywc}"/>
+                        <af:setActionListener from="false" to="#{sessionScope.wwc}"/>
+                    </af:button>
+                    
+                    <af:button text="已完成报表" actionListener="#{reportAdmin.initReport}" id="b6"
+                               rendered="#{sessionScope.ywc==true or sessionScope.ywc==null}">
+                        <f:attribute name="status" value="complete"/>
+                        <af:setActionListener from="true" to="#{sessionScope.wwc}"/>
+                        <af:setActionListener from="false" to="#{sessionScope.ywc}"/>
+                    </af:button>
+                </af:group>
+                <af:panelSplitter id="ps1" splitterPosition="400">
+                    <f:facet name="first">
+                        <af:table summary="报表" value="#{reportAdmin.reportList}" var="row" rowBandingInterval="0"
+                                  id="t1" rowSelection="single"
+                                  selectionListener="#{reportAdmin.toBuildingReportSelectAction}"
+                                  partialTriggers="::b5 ::b6">
+                            <af:column sortable="false" headerText="报表ID" id="c1" rowHeader="true" width="50">
+                                <af:outputText value="#{row.id}" id="ot1"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="报表名称" id="c5" rowHeader="true">
+                                <af:outputText value="#{row.reportName}" id="ot5"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="需求人" id="c3" width="50">
+                                <af:outputText value="#{row.requireEmp.name}" id="ot3"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="完成状态" id="c4" width="50">
+                                <af:outputText value="#{row.reportStatus}" id="ot4"/>
+                            </af:column>
+                        </af:table>
+                    </f:facet>
+                    <f:facet name="second">
+                        <af:panelGroupLayout id="pgReport">
+                            <af:panelTabbed position="above" id="panelTab">
+                                <af:showDetailItem id="tab1" text="报表需求">
+                                    <af:declarativeComponent id="x515"
+                                                             rendered="#{!(reportAdmin.currentBuildingReport==null)}"
+                                                             viewId="./reportRequire.jsff"></af:declarativeComponent>
+                                </af:showDetailItem>
+                                <af:showDetailItem id="tab2" text="SQL配置">
+                                    <af:declarativeComponent id="x5152"
+                                                             rendered="#{!(reportAdmin.currentBuildingReport==null)}"
+                                                             viewId="./sql.jsff"></af:declarativeComponent>
+                                </af:showDetailItem>
+                                <af:showDetailItem id="sdi1" text="参数">
+                                    <af:declarativeComponent id="x5152s"
+                                                             rendered="#{!(reportAdmin.currentBuildingReport==null)}"
+                                                             viewId="./param.jsff"></af:declarativeComponent>
+                                </af:showDetailItem>
+                                <af:showDetailItem id="tab3" text="输出字段">
+                                    <af:declarativeComponent id="x51252s"
+                                                             rendered="#{!(reportAdmin.currentBuildingReport==null)}"
+                                                             viewId="./column.jsff"></af:declarativeComponent>
+                                </af:showDetailItem>
+                                <af:showDetailItem id="tab4" text="任务单配置">
+                                    <af:inputText label="任务配置:" id="ce1" rows="3"
+                                                  value="#{reportAdmin.currentBuildingReport.taskConfig}"/>
+                                </af:showDetailItem>
+                                <af:showDetailItem id="sdi2" text="测试">
+                                    <af:declarativeComponent id="dc1" viewId="./testReport.jsff"></af:declarativeComponent>
+                                </af:showDetailItem>
+                            </af:panelTabbed>
+                            <af:panelGroupLayout id="pgButton" rendered="#{!(reportAdmin.currentBuildingReport==null)}">
+                                <af:button text="保存修改" id="b1" action="#{reportAdmin.submit}"
+                                           rendered="#{reportAdmin.currentBuildingReport.reportStatus!='complete'}"/>
+                                <af:button text="初始化输出" id="b3" action="#{reportAdmin.initColumns}"
+                                           rendered="#{reportAdmin.currentBuildingReport.reportStatus!='complete'}"/>
+                                <af:button text="初始化参数" id="b2" action="#{reportAdmin.initParams}"
+                                           rendered="#{reportAdmin.currentBuildingReport.reportStatus!='complete'}"/>
+                                <af:button text="确认完成" id="b4" action="#{reportAdmin.submitComplete}"
+                                           rendered="#{reportAdmin.currentBuildingReport.reportStatus!='complete'}"/>
+                                <af:button text="修改" id="b7" actionListener="#{reportAdmin.submitEdit}"
+                                           rendered="#{reportAdmin.currentBuildingReport.reportStatus=='complete'}"/>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                </af:panelSplitter>
+            </af:panelGroupLayout>
+        </af:form>
+    </af:document>
+</f:view>

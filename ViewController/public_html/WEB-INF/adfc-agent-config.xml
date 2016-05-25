@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="GBK" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <managed-bean id="__1">
+    <managed-bean-name>costDestManager</managed-bean-name>
+    <managed-bean-class>agent.CostDestManager</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__2">
+    <managed-bean-name>empAdmin</managed-bean-name>
+    <managed-bean-class>agent.EmployeesAdmin</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__3">
+    <managed-bean-name>contactAdmin</managed-bean-name>
+    <managed-bean-class>agent.ChannelContactAdmin</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__4">
+    <managed-bean-name>agentReport</managed-bean-name>
+    <managed-bean-class>agent.report.AgentReport</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__5">
+    <managed-bean-name>channelReFormList</managed-bean-name>
+    <managed-bean-class>agent.report.ChannelReFormList</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

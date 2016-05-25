@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:c="http://java.sun.com/jsp/jstl/core"
+        xmlns:f="http://java.sun.com/jsf/core">
+    <af:document title="showReport.jsf" id="d1">
+        <af:resource type="javascript" source="/resources/js/cust.js"/>
+        <af:form id="reportForm">
+            <af:popup id="running" contentDelivery="immediate">
+                <af:dialog id="d2" type="none" title="正在查询，请稍等......." closeIconVisible="false" contentWidth="120">
+                    <af:image shortDesc=" ani" source="/resources/images/animbar.gif" id="i2"
+                              inlineStyle="width:250px;"/>
+                </af:dialog>
+            </af:popup>
+            <af:panelGroupLayout id="reportSelect" layout="vertical">
+                <!--<af:forEach items="#{reportAdmin.reportList}" var="report">
+                    <af:link text="#{report.reportName}" id="d_#{report.id}"
+                             actionListener="#{reportAdmin.ReportSelect}">
+                        <af:setActionListener to="#{reportAdmin.currentShowReport}" from="#{report}"/>
+                    </af:link>                  
+                </af:forEach>-->
+                <af:panelGroupLayout id="pgl1" layout="horizontal">
+                    <af:link text="我的报表" id="l2">
+                        <af:setActionListener from="mcare" to="#{sessionScope.selectReportType}"/>
+                    </af:link>
+                    <af:spacer width="10" height="20" id="s1"/>
+                    <af:link text="我申请的报表" id="l1">
+                        <af:setActionListener from="mreq" to="#{sessionScope.selectReportType}"/>
+                    </af:link>
+                    <af:spacer width="20" height="10" id="s3"></af:spacer>
+                    <af:link text="其他报表" id="l4">
+                        <af:setActionListener from="other" to="#{sessionScope.selectReportType}"/>
+                    </af:link>
+                    <af:spacer width="40" height="10" id="s2"/>
+                    <!--<af:selectOneChoice label="选择其他报表：" value="#{reportAdmin.currentShowReport}" id="soc1"
+                                        valueChangeListener="#{reportAdmin.reportItemSelect}" autoSubmit="true">
+                        <af:forEach items="#{reportAdmin.otherReports}" var="report">
+                            <f:selectItem itemValue="#{report}" itemLabel="#{report.reportName}(#{report.id})"
+                                          id="si_#{report.id}"/>
+                        </af:forEach>
+                    </af:selectOneChoice>-->
+                    
+                </af:panelGroupLayout>
+                <af:spacer width="10" height="5" id="s8"/>
+                <af:panelGroupLayout id="pgl2" partialTriggers="l1 l4 l2" styleClass="reportSelect">
+                    <af:spacer width="50" height="5" id="s6"/>
+                    <af:panelGroupLayout id="g1" rendered="#{sessionScope.selectReportType=='mcare'}">
+                        <af:forEach items="#{reportAdmin.myCareReports}" var="report">
+                            <af:link text="#{report.reportName}" id="d_#{report.id}"
+                                     actionListener="#{reportAdmin.reportLinkSelect}">
+                                <af:setActionListener to="#{reportAdmin.currentShowReport}" from="#{report}"/>
+                                <af:setActionListener to="#{sessionScope.selectReport}" from="#{report}"/>
+                            </af:link>
+                            <af:outputText value="　" id="ot2"/>
+                        </af:forEach>
+                    </af:panelGroupLayout>
+                    <af:panelGroupLayout id="g2" rendered="#{sessionScope.selectReportType=='mreq'}">
+                        <af:spacer width="50" height="5" id="s7"/>
+                        <af:forEach items="#{reportAdmin.myRequestReports}" var="report">
+                            <af:link text="#{report.reportName}" id="d_#{report.id}"
+                                     actionListener="#{reportAdmin.reportLinkSelect}">
+                                <af:setActionListener to="#{reportAdmin.currentShowReport}" from="#{report}"/>
+                                <af:setActionListener to="#{sessionScope.selectReport}" from="#{report}"/>
+                            </af:link>
+                            <af:outputText value="　" id="ot1"/>
+                        </af:forEach>
+                    </af:panelGroupLayout>
+                    <af:panelGroupLayout id="g3" rendered="#{sessionScope.selectReportType=='other'}">
+                        <af:forEach items="#{reportAdmin.otherReports}" var="report">
+                            <af:link text="#{report.reportName}" id="d_#{report.id}"
+                                     actionListener="#{reportAdmin.ReportSelect}">
+                                <af:setActionListener to="#{reportAdmin.currentShowReport}" from="#{report}"/>
+                            </af:link>
+                            <af:outputText value="　" id="ot3"/>
+                        </af:forEach>
+                    </af:panelGroupLayout>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+            <af:spacer width="10" height="20" id="s9"/>
+            <af:declarativeComponent viewId="./subview/reportParam.jsff" id="reportP">
+                <f:attribute name="rh" value="#{reportAdmin.reportHolder}"/>
+            </af:declarativeComponent>
+            <af:spacer width="10" height="20" id="s10"/>
+            <af:button text="查询" action="#{reportAdmin.reportHolder.refresh}" partialSubmit="true" id="b5">
+                <af:clientListener method="enforcePreventUserInput" type="click"/>
+                <af:setActionListener to="#{sessionScope.currentReport}" from="#{reportAdmin.reportHolder}"/>
+            </af:button>
+            <af:spacer width="10" height="20" id="s11"/>
+            <!--#{viewScoper.currentReport==null}-->
+            <af:declarativeComponent viewId="./subview/table.jsff" id="dc1"
+                                     rendered="#{sessionScope.currentReport!=null}">
+                <f:attribute name="rh" value="#{sessionScope.currentReport}"/>
+            </af:declarativeComponent>
+        </af:form>
+    </af:document>
+</f:view>

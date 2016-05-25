@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:cc="http://java.sun.com/jsf/composite">
+    <af:document title="盐城联通" id="d1">
+        <af:resource type="javascript" source="/resources/js/cust.js"/>
+        <af:pageTemplate viewId="/template/mainTemp.jsf" id="pt1">
+            <f:facet name="menuAndNPHead">
+                <af:declarativeComponent id="dc4" viewId="/template/component/menuBarAndNPHead.jsff">
+                    <f:attribute name="menuBar" value="#{sessionManager.menuBar}"/>
+                    <f:attribute name="loginUser" value="#{sessionManager.loginUser}"/>
+                </af:declarativeComponent>
+            </f:facet>
+            <f:facet name="body">
+                <af:declarativeComponent id="dc1" viewId="/template/component/pageBody.jsff">
+                    <f:attribute name="menuBar" value="#{sessionManager.menuBar}"/>
+                </af:declarativeComponent>
+            </f:facet>
+        </af:pageTemplate>
+    </af:document>
+</f:view>

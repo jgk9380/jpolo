@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<af:componentDef xmlns:af="http://xmlns.oracle.com/adf/faces/rich" var="attrs" componentVar="comp" definition="private"
+                 xmlns:afc="http://xmlns.oracle.com/adf/faces/rich/component">
+    <af:xmlContent>
+        <afc:component>
+            <afc:description/>
+            <afc:display-name>inputValue</afc:display-name>
+            <afc:attribute>
+                <afc:attribute-name>value</afc:attribute-name>
+                <afc:attribute-class>java.lang.Object</afc:attribute-class>
+                <afc:required>
+                    true
+                </afc:required>
+            </afc:attribute>
+            <afc:attribute>
+                <afc:attribute-name>rows</afc:attribute-name>
+                <afc:attribute-class>java.lang.Integer</afc:attribute-class>
+                <afc:default-value>
+                    1
+                </afc:default-value>
+            </afc:attribute>
+            <afc:attribute>
+                <afc:attribute-name>cols</afc:attribute-name>
+                <afc:attribute-class>java.lang.Integer</afc:attribute-class>
+            </afc:attribute>
+            <afc:component-extension>
+                <afc:component-tag-namespace>component</afc:component-tag-namespace>
+                <afc:component-taglib-uri>http://jdf.object.edit</afc:component-taglib-uri>
+            </afc:component-extension>
+        </afc:component>
+    </af:xmlContent>
+</af:componentDef>

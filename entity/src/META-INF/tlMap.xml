@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="GBK"?>
+<object-persistence xmlns="http://www.eclipse.org/eclipselink/xsds/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:eclipselink="http://www.eclipse.org/eclipselink/xsds/persistence" version="Eclipse Persistence Services - 2.6.1.v20150916-55dc7c3">
+   <name>tlMap</name>
+   <login xsi:type="database-login">
+      <platform-class>org.eclipse.persistence.platform.database.oracle.Oracle11Platform</platform-class>
+      <user-name>jemtest</user-name>
+      <password>A2AA300C12827E5C00E28EA940767BE2</password>
+      <driver-class>oracle.jdbc.OracleDriver</driver-class>
+      <connection-url>jdbc:oracle:thin:@130.34.22.3:1521:ora11g</connection-url>
+   </login>
+</object-persistence>

@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>pageBody</description>
+                <attribute>
+                    <attribute-name>menuBar</attribute-name>
+                    <attribute-class>web.menu.MenuBar</attribute-class>
+                    <required>true</required>
+                </attribute>
+            </component>
+        </af:xmlContent>
+        <!--<af:forEach items="#{menuBar.commandList}" var="menuforpage">
+            <af:inlineFrame inlineStyle="height:72vh; width:98vw;" shortDesc=" " source="#{menuforpage.url}" rendered="#{menuforpage.currentCommand}"
+                            id="if#{menuforpage.id}"/>
+        </af:forEach>-->
+        <af:inlineFrame inlineStyle="height:77vh; width:98vw;" shortDesc=" " source="#{attrs.menuBar.currentCommand.url}"
+                        id="if#{attrs.menuBar.currentCommand.id}"/>
+    </af:componentDef>
+</ui:composition>

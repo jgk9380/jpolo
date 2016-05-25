@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<af:componentDef xmlns:af="http://xmlns.oracle.com/adf/faces/rich" var="attrs" componentVar="comp" definition="private"
+                 xmlns:afc="http://xmlns.oracle.com/adf/faces/rich/component">
+    <af:xmlContent>
+        <afc:component>
+            <afc:description/>
+            <afc:display-name>test</afc:display-name>
+            <afc:facet>
+                <afc:facet-name>facet1</afc:facet-name>
+            </afc:facet>
+            <afc:attribute>
+                <afc:attribute-name>attr1</afc:attribute-name>
+                <afc:attribute-class>java.lang.String</afc:attribute-class>
+            </afc:attribute>
+            <afc:component-extension>
+                <afc:component-tag-namespace>component</afc:component-tag-namespace>
+                <afc:component-taglib-uri>http://jdf.object.edit</afc:component-taglib-uri>
+                <afc:method-attribute>
+                    <afc:attribute-name>method1</afc:attribute-name>
+                    <afc:method-signature>void method()</afc:method-signature>
+                </afc:method-attribute>
+            </afc:component-extension>
+        </afc:component>
+    </af:xmlContent>
+</af:componentDef>

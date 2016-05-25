@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="EmployeeAdmin.jsf" id="d1">
+        <af:form id="f1">
+            <af:panelGroupLayout id="pgl1" layout="horizontal" valign="top">
+                <af:panelGroupLayout id="pgl2">
+                    <af:table value="#{empAdmin.cityList}" var="row" rowBandingInterval="0" id="cityt"
+                              rowSelection="single" selectionListener="#{empAdmin.citySelectListener}"
+                              editingMode="clickToEdit">
+                        <af:column sortable="false" headerText="业务单元" id="c1">
+                            <af:outputText value="#{row.name}" id="ot1"/>
+                        </af:column>
+                        <!--<af:column sortable="false" headerText="负责人" id="c2">
+                            <af:selectOneChoice label=" " value="#{row.manager}" id="soc1">
+                                <f:selectItems value="#{empAdmin.cityManagerSelectItem}" id="si1"/>
+                            </af:selectOneChoice>
+                            -->
+                        <!--<af:outputText value="#{row.manager.name}" id="ot2"/>-->
+                        <!--
+                        </af:column>-->
+                    </af:table>
+                </af:panelGroupLayout>
+                <af:spacer width="30" height="10" id="s2"/>
+                <af:panelGroupLayout id="pgl3">
+                    <af:table value="#{empAdmin.gridList}" var="row" rowBandingInterval="0" id="gridt"
+                              rowSelection="single" selectionListener="#{empAdmin.GridSelect}" partialTriggers="::cityt"
+                              editingMode="clickToEdit">
+                        <af:column sortable="false" headerText="网格" id="c3">
+                            <af:outputText value="#{row.name}" id="ot3"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="网格经理" id="c4">
+                            <af:selectOneChoice label=" " value="#{row.manager}" id="soc2">
+                                <f:selectItems value="#{empAdmin.gridManagerSelectItem}" id="si2"/>
+                            </af:selectOneChoice>
+                        </af:column>
+                    </af:table>
+                </af:panelGroupLayout>
+                <af:spacer width="30" height="10" id="s1"/>
+                <af:panelGroupLayout id="pgl4" partialTriggers="s3 gridt cityt" inlineStyle="width:350px;"
+                                     layout="scroll">
+                    <af:table value="#{empAdmin.channelList}" var="row" rowBandingInterval="0" id="chant"
+                              rowSelection="single" selectionListener="#{empAdmin.channelSelect}"
+                              partialTriggers="::gridt" editingMode="clickToEdit">
+                        <af:column sortable="false" headerText="渠道" width="250" id="c5">
+                            <af:outputText value="#{row.name}" id="ot5"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="渠道经理" width="50" id="c6">
+                            <af:selectOneChoice label=" " value="#{row.manager}" id="soc3">
+                                <f:selectItems value="#{empAdmin.channelManagerSelectItem}" id="si3"/>
+                            </af:selectOneChoice>
+                        </af:column>
+                    </af:table>
+                </af:panelGroupLayout>
+                <af:spacer width="30" height="10" id="s3"/>
+                <af:panelGroupLayout id="pgl5" inlineStyle="width:350px;"   layout="scroll">
+                    <af:table value="#{empAdmin.sixAddressList}" var="row" rowBandingInterval="0" id="sixt"
+                              rowSelection="single" selectionListener="#{empAdmin.sixAddressSelect}"
+                              partialTriggers="::gridt" editingMode="clickToEdit">
+                        <af:column sortable="false" headerText="地址" width="250" id="c7">
+                            <af:outputText value="#{row.sixAddress}" id="ot2"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="社区经理" width="50" id="c8">
+                            <af:selectOneChoice label=" " value="#{row.manager}" id="soc4">
+                                <f:selectItems value="#{empAdmin.sixAdddressManagerSelectItem}" id="si4"/>
+                            </af:selectOneChoice>
+                        </af:column>
+                    </af:table>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+            <af:button text="保存" actionListener="#{empAdmin.save}" id="b1"/>
+        </af:form>
+    </af:document>
+</f:view>

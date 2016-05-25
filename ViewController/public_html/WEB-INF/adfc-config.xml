@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="GBK" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <metadata-resource id="__6">/WEB-INF/adfc-report-config1.xml</metadata-resource>
+  <metadata-resource id="__8">/WEB-INF/adfc-task-config.xml</metadata-resource>
+  <metadata-resource id="__10">/WEB-INF/adfc-agent-config.xml</metadata-resource>
+  <view id="main">
+    <page>/main.jsf</page>
+  </view>
+  <view id="login">
+    <page>/login.jsf</page>
+  </view>
+  <view id="ListPoloView">
+    <page>/poloAdmin/ListPoloView.jsf</page>
+  </view>
+  <control-flow-rule id="__2">
+    <from-activity-id>*</from-activity-id>
+    <control-flow-case id="__3">
+      <from-outcome>main</from-outcome>
+      <to-activity-id>main</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__4">
+      <from-outcome>login</from-outcome>
+      <to-activity-id>login</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <managed-bean id="__1">
+    <managed-bean-name>sessionManager</managed-bean-name>
+    <managed-bean-class>web.WebSessionManager</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__5">
+    <managed-bean-name>poloViewProxy</managed-bean-name>
+    <managed-bean-class>view.test.ViewProxy</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__7">
+    <managed-bean-name>objectToPoloProxy</managed-bean-name>
+    <managed-bean-class>view.ObjectToPoloProxy</managed-bean-class>
+    <managed-bean-scope>application</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__9">
+    <managed-bean-name>gpTable</managed-bean-name>
+    <managed-bean-class>view.GetPutTable</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

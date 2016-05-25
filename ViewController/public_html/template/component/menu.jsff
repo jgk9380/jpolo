@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>showMenu</description>
+                <attribute>
+                    <attribute-name>menu</attribute-name>
+                    <attribute-class>web.menu.IMenu</attribute-class>
+                    <required>true</required>
+                </attribute>
+                <attribute>
+                    <attribute-name>loginID</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                    <required>true</required>
+                </attribute>
+            </component>
+        </af:xmlContent>
+        <af:menu text="#{attrs.menu.title}" id="m#{attrs.menu.id}" rendered="#{attrs.menu.isRender(attrs.loginID)}">
+            <af:forEach items="#{attrs.menu.childrens}" var="menuItem">
+                <c:if test="#{!menuItem.item}">
+                    <af:menu text="#{menuItem.title}" id="m#{menuItem.id}" rendered="#{menuItem.isRender(attrs.loginID)}">
+                        <af:forEach items="#{menuItem.childrens}" var="menuItemSec">
+                            <af:commandMenuItem text="#{menuItemSec.title}" id="mi#{menuItemSec.id}"
+                                                icon="#{menuItemSec.opened?'/resources/images/open.png':''}" 
+                                                rendered="#{menuItemSec.isRender(attrs.loginID)}">
+                                <f:attribute value="#{menuItemSec}" name="menuItem"/>
+                                <af:clientListener type="action" method="menuAction"/>
+                                <af:serverListener type="menuClick" method="#{menuItemSec.menuBar.menuAction}"/>
+                            </af:commandMenuItem>
+                        </af:forEach>
+                    </af:menu>
+                </c:if>
+                <c:if test="#{menuItem.item}">
+                    <af:commandMenuItem text="#{menuItem.title}" id="mi#{menuItem.id}" icon="#{menuItem.opened?'/resources/images/open.png':''}"
+                                        rendered="#{menuItem.isRender(attrs.loginID)}">
+                        <f:attribute value="#{menuItem}" name="menuItem"/>
+                        <af:clientListener type="action" method="menuAction"/>
+                        <af:serverListener type="menuClick" method="#{menuItem.menuBar.menuAction}"/>
+                    </af:commandMenuItem>
+                </c:if>
+            </af:forEach>
+        </af:menu>
+    </af:componentDef>
+</ui:composition>

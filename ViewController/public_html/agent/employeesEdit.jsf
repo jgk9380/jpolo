@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="employees.jsf" id="d1">
+        <af:form id="f1">
+            <af:selectOneChoice label="选择部门：" id="smc1" value="#{empAdmin.depart}" unselectedLabel="请选择"
+                                autoSubmit="true" valueChangeListener="#{empAdmin.departChangeListen}">
+                <f:selectItems value="#{empAdmin.departSelectItem}" id="si1"/>
+            </af:selectOneChoice>
+            <af:table value="#{empAdmin.employeeList}" var="row" partialTriggers="::smc1"
+                      selectionListener="#{empAdmin.employeeSelect}" rowBandingInterval="0" id="t1"
+                      editingMode="clickToEdit">
+                <af:column sortable="false" headerText="部门" id="c1">
+                    <af:selectOneChoice label="选择部门：" id="soc1" value="#{row.depart}" autoSubmit="true">
+                        <f:selectItems value="#{empAdmin.departSelectItem}" id="si2"/>
+                    </af:selectOneChoice>
+                    <f:facet name="footer">
+                        <af:outputText value="合计#{empAdmin.employeeList.size()}人" id="ot1"/>
+                    </f:facet>
+                    <!--<af:outputText value="#{row.depart}" id="ot1"/>-->
+                </af:column>
+                <af:column sortable="false" headerText="员工姓名" id="c2">
+                    <af:outputText value="#{row.name}" id="ot2"/>
+                </af:column>
+                <af:column sortable="false" headerText="电话" id="c3">
+                    <af:outputText value="#{row.tele}" id="ot3"/>
+                </af:column>
+                <af:column sortable="false" headerText="岗位" id="c4" sortProperty="positionTypeId">
+                    <af:selectOneChoice label="选择岗位：" id="soc2" value="#{row.positionTypeId}" autoSubmit="true">
+                        <f:selectItems value="#{empAdmin.positionTypeSelectItem}" id="si3"/>
+                    </af:selectOneChoice>
+                </af:column>
+                <af:column sortable="false" headerText="归属营业厅" id="c5">
+                    <af:selectOneChoice label="选择营业厅：" id="empchan" value="#{row.channel}" autoSubmit="true"
+                                        unselectedLabel="无">
+                        <f:selectItems value="#{empAdmin.channelSelectItemForEmp}" id="si4"/>
+                    </af:selectOneChoice>
+                </af:column>
+                <af:column sortable="false" headerText="岗位描述" id="c6">
+                    <af:selectOneChoice label="岗位描述：" id="soc3" value="#{row.posRemarkId}" autoSubmit="true">
+                        <f:selectItems value="#{empAdmin.posiRemarkSelectItem}" id="si5"/>
+                    </af:selectOneChoice>
+                </af:column>
+            </af:table>
+            <af:button text="保存" actionListener="#{empAdmin.save}" id="b1"/>
+        </af:form>
+    </af:document>
+</f:view>

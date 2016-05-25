@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>editPolo</description>
+                <attribute>
+                    <attribute-name>polo</attribute-name>
+                    <attribute-class>jpolo.iface.entity.IPolo</attribute-class>
+                    <required>true</required>
+                </attribute>
+            </component>
+        </af:xmlContent>
+        <af:panelBox text="修改【#{attrs.polo.PMeta.alias}】数据" id="dc_pb1" titleHalign="end" showDisclosure="false"
+                     showHeader="always" inlineStyle="max-height:900px; max-width:400px; min-height:400px;"
+                     type="stretch">
+            <f:facet name="toolbar"/>
+            <af:panelFormLayout id="pfl1" fieldWidth="80" labelWidth="80">
+                <af:forEach items="#{attrs.polo.PMeta.FNames}" var="name">
+                    <af:inputText label="#{attrs.polo.getField(name).meta.label}:"
+                                  value="#{attrs.polo.getField(name).value}" id="ot1"
+                                  rendered="#{attrs.polo.getField(name).meta.type=='String'}"/>
+                    <af:inputNumberSpinbox label="#{attrs.polo.getField(name).meta.label}:"
+                                           value="#{attrs.polo.getField(name).value}" id="in1"
+                                           rendered="#{attrs.polo.getField(name).meta.type=='Number'}"/>
+                    <af:inputDate label="#{attrs.polo.getField(name).meta.label}:"
+                                  value="#{attrs.polo.getField(name).value}" id="ins4"
+                                  rendered="#{attrs.polo.getField(name).meta.type=='Date'}"/>
+                    <af:selectOneChoice label="#{attrs.polo.getField(name).meta.label}:"
+                                        value="#{attrs.polo.getField(name).valuePK}" id="ins1" 
+                                        rendered="#{attrs.polo.getField(name).meta.type=='Polo'}" unselectedLabel="无">
+                        <f:selectItems value="#{attrs.polo.getField(name).selectItems}" id="si1"/>
+                    </af:selectOneChoice>
+                    <af:selectManyChoice label="#{attrs.polo.getField(name).meta.label}:"
+                                         value="#{attrs.polo.getField(name).PKList}" id="ins2"
+                                         rendered="#{attrs.polo.getField(name).meta.type=='List'}">
+                        <f:selectItems value="#{attrs.polo.getField(name).selectItems}" id="dc_si1"/>
+                    </af:selectManyChoice>
+                    <af:selectManyChoice label="#{attrs.polo.getField(name).meta.label}:"
+                                         value="#{attrs.polo.getField(name).PKList}" id="ins3"
+                                         rendered="#{attrs.polo.getField(name).meta.type=='Set'}">
+                        <f:selectItems value="#{attrs.polo.getField(name).selectItems}" id="dc_si2"/>
+                    </af:selectManyChoice>
+                </af:forEach>
+                <f:facet name="footer">
+                    <af:separator id="s1"/>
+                    <af:panelGroupLayout id="pgl1" halign="center" layout="horizontal">
+                        <af:button text="提交" id="b1"/>
+                        <af:button text="取消" id="b2"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelFormLayout>
+        </af:panelBox>
+    </af:componentDef>
+</ui:composition>

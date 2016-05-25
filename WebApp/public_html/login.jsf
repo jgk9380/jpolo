@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="login.jsf" id="d1">
+        <af:form id="f1" defaultCommand="cb2">
+            <af:panelBox text="登陆" id="pb1" showDisclosure="false" titleHalign="center"
+                         inlineStyle="width:300px; height:150px; margin:0 auto; margin-top:200px;">
+                <af:panelGroupLayout id="pfl2" layout="vertical" halign="center">
+                    <af:inputText label="用户：" id="it3" value="#{sessionManager.loginUser.loginID}"/>
+                    <af:inputText label="密码：" id="it4" secret="true" value="#{sessionManager.loginUser.pwd}"/>
+                    <af:panelGroupLayout id="pgl1" layout="horizontal">
+                        <af:button text="登陆" id="cb2" action="#{sessionManager.loginUser.loginAction}"/>
+                        <af:button text="密码查询" id="b1" action="#{sessionManager.loginUser.QueryPwdAction}"/>
+                    </af:panelGroupLayout>
+                </af:panelGroupLayout>
+            </af:panelBox>
+        </af:form>
+    </af:document>
+</f:view>

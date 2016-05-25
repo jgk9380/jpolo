@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>outputPropertyLV</description>
+                <attribute>
+                    <attribute-name>prop</attribute-name>
+                    <attribute-class>interfaces.Entity.IProperty</attribute-class>
+                    <required>true</required>
+                </attribute>
+            </component>
+        </af:xmlContent>
+        <af:group id="dc_g1">
+            <!--<c:set var="clabel" value="#{attrs.prop.meta.name}"/>-->
+            <c:set var="id" value="#{attrs.prop.meta.name}"/>
+            <c:set var="label" value="#{metaInfo.getEntityPropTitle(attrs.prop.entity,attrs.prop.meta.name)}"/>
+            <!--<c:set var="evalue" value="#{attrs.prop.value}"/>-->
+            <c:set var="propType" value="#{attrs.prop.meta.propType}"/>
+            <c:if test="#{propType=='Simple'}">
+                <c:set var="vType" value="#{attrs.prop.meta.valueType}"/>
+                <c:if test="#{vType=='string'}">
+                    <af:inputText label="#{label}:" id="#{id}d" value="#{attrs.prop.value}" disabled="true"/>
+                </c:if>
+                <c:if test="#{vType=='number'}">
+                    <af:inputNumberSpinbox label="#{label}:" id="#{id}" value="#{attrs.prop.value}" disabled="true"/>
+                </c:if>
+                <c:if test="#{vType=='date'}">
+                    <af:inputDate label="#{label}:" id="#{id}" value="#{attrs.prop.value}" disabled="true"/>
+                </c:if>
+                <c:if test="#{vType=='bool'}">
+                    <af:selectBooleanCheckbox label="#{label}:" id="#{id}b"  value="#{attrs.prop.value}" disabled="true"/>
+                </c:if>
+                <!--<c:if test="#{vType=='text'}">
+                    <af:richTextEditor label="#{label}:" id="#{id}d" value="#{evalue}" toolboxLayout="none" disabled="#{attrs.inputDisable}"
+                                       inlineStyle="grid-row-sizing:fit-content; grid-column-sizing:fit-content;"/>
+                </c:if>-->
+            </c:if>
+            <c:if test="#{propType=='Entity'}">
+                <af:inputText label="#{label}:" id="#{id}" value="#{attrs.prop.value}" disabled="true"/>
+            </c:if>
+            <c:if test="#{propType=='View'}">
+                <af:inputText label="#{label}:" id="#{id}" value="#{attrs.prop.value}" disabled="true"/>
+            </c:if>
+        </af:group>
+    </af:componentDef>
+</ui:composition>

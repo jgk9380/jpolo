@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="testlayout.jsf" id="d1">
+        <af:form id="f1">
+            <af:panelGroupLayout id="pgl1" inlineStyle="width:80vw; background-color:Gray; margin:0 auto; height:95vh; margin-top:3vh;" layout="horizontal" valign="middle"
+                                 halign="center">
+                <af:panelGroupLayout id="pgl2"  inlineStyle="height:80vh; width:40vw;  background-color:Blue;" layout="vertical">
+                    <af:button text="button 1" id="b1"/>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="pgl3"  inlineStyle="height:80vh; width:40vw;  background-color:Aqua;" layout="scroll">
+                    <af:button text="button 2" id="b2"/>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+        </af:form>
+    </af:document>
+</f:view>

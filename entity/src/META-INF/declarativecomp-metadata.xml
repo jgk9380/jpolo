@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="GBK" ?>
+<declarativeCompDefs xmlns="http://xmlns.oracle.com/adf/faces/rich/declarativecomp">
+  <declarativecomp-jsp-ui-def>/componentDef1.jsf</declarativecomp-jsp-ui-def>
+  <declarativecomp-taglib>
+    <taglib-name>jdf</taglib-name>
+    <taglib-uri>http://jdf.object</taglib-uri>
+    <taglib-prefix>jdf</taglib-prefix>
+  </declarativecomp-taglib>
+</declarativeCompDefs>

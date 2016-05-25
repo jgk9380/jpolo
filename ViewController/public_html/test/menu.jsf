@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="test1.jsf" id="d1">
+        <af:menuBar id="menuBar" value="yy">
+            <af:menu text="33" id="m1">
+                <af:goMenuItem text="goMenuItem 1" id="gmi1"/>
+                <af:menu text="menu 34" id="m2">
+                    <af:commandMenuItem text="commandMenuItem 2" id="mm1" icon="/resources/images/liantong.PNG"/>
+                    <af:goMenuItem text="goMenuItem 2" id="gmi2" icon="/resources/images/bg.jpg"/>
+                </af:menu>
+                <af:commandMenuItem text="commandMenuItem 1" id="cmi1"/>
+            </af:menu>
+        </af:menuBar>
+        <af:form id="f1">
+            <af:button text="button 1" id="b1"/>
+        </af:form>
+    </af:document>
+</f:view>

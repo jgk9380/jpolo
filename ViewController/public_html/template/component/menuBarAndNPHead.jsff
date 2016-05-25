@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>showMenu</description>
+                <attribute>
+                    <attribute-name>menuBar</attribute-name>
+                    <attribute-class>web.menu.MenuBar</attribute-class>
+                    <required>true</required>
+                </attribute>
+                <attribute>
+                    <attribute-name>loginUser</attribute-name>
+                    <attribute-class>web.ILoginUser</attribute-class>
+                    <required>true</required>
+                </attribute>
+            </component>
+        </af:xmlContent>
+        <af:panelGroupLayout id="pgl4" inlineStyle="width:100vw;" layout="vertical" halign="left">
+            <af:panelGroupLayout id="pgl1" inlineStyle="width:100vw;" layout="horizontal" halign="left">
+                <af:menuBar id="menuBar" value="yy">
+                    <af:forEach items="#{attrs.menuBar.menuList}" var="menu">
+                        <af:declarativeComponent id="dc#{menu.id}" viewId="/template/component/menu.jsff">
+                            <f:attribute name="menu" value="#{menu}"/>
+                            <f:attribute name="loginID" value="#{attrs.loginUser.loginID}"/>
+                        </af:declarativeComponent>
+                    </af:forEach>
+                </af:menuBar>
+                <!--<af:link text="欢迎您：#{attrs.loginUser.userName}" action="#{attrs.loginUser.loginOutAction}" id="l1" inlineStyle="margin-right:0vw;"/>-->
+            </af:panelGroupLayout>
+           
+            <af:navigationPane id="np" itemRemoval="all" hint="tabs" var="menuForItem" value="#{attrs.menuBar.commandList}">
+                <f:facet name="nodeStamp">
+                    <af:commandNavigationItem text="#{menuForItem.title}" selected="#{menuForItem.currentCommand}"   rendered="#{menuForItem.isRender(attrs.loginUser.loginID)}"
+                                              icon="#{menuForItem.currentCommand ? '/resources/images/home1.png':''}" id="cngi#{menuForItem.id}"
+                                              actionListener="#{attrs.menuBar.itemActionListener}" itemListener="#{attrs.menuBar.itemListener}">
+                        <f:attribute value="#{menuForItem}" name="menuItem"/>
+                    </af:commandNavigationItem>
+                </f:facet>
+            </af:navigationPane>
+        </af:panelGroupLayout>
+    </af:componentDef>
+</ui:composition>

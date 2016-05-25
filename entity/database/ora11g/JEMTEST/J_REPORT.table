@@ -1,0 +1,1143 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<table xmlns="http://xmlns.oracle.com/jdeveloper/1211/offlinedb">
+  <name>J_REPORT</name>
+  <columns>
+    <column>
+      <name>ID</name>
+      <dataTypeUsage>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>ID</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>REQUIRE_EMP_ID</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">20</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>REQUIRE_EMP_ID</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>REPORT_NAME</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">20</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>REPORT_NAME</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>REMARK_DESC</name>
+      <dataTypeUsage>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>CLOB</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>REMARK_DESC</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+        <entry>
+          <key>OracleColumnProperties</key>
+          <value class="oracle.javatools.db.ora.OracleColumnProperties">
+            <LOBProperties>
+              <name></name>
+              <LOBCache>NOCACHE</LOBCache>
+              <LOBSegName>SYS_LOB0000247008C00004$$</LOBSegName>
+              <chunk>8192</chunk>
+              <properties>
+                <entry>
+                  <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                  <value class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>REMARK_DESC</name>
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <name>J_REPORT</name>
+                          <identifier class="java.math.BigDecimal">247008</identifier>
+                          <schemaName>JEMTEST</schemaName>
+                          <type>TABLE</type>
+                        </parent>
+                        <type>COLUMN</type>
+                      </parent>
+                      <type>OracleColumnProperties</type>
+                    </parent>
+                    <type>LOB DESCRIPTOR</type>
+                  </value>
+                </entry>
+              </properties>
+              <retention>true</retention>
+              <storage>
+                <logging>true</logging>
+              </storage>
+              <storageEnabledInRow>true</storageEnabledInRow>
+            </LOBProperties>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>FIELDS_DESC</name>
+      <dataTypeUsage>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>CLOB</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>FIELDS_DESC</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+        <entry>
+          <key>OracleColumnProperties</key>
+          <value class="oracle.javatools.db.ora.OracleColumnProperties">
+            <LOBProperties>
+              <name></name>
+              <LOBCache>NOCACHE</LOBCache>
+              <LOBSegName>SYS_LOB0000247008C00005$$</LOBSegName>
+              <chunk>8192</chunk>
+              <properties>
+                <entry>
+                  <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                  <value class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>FIELDS_DESC</name>
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <name>J_REPORT</name>
+                          <identifier class="java.math.BigDecimal">247008</identifier>
+                          <schemaName>JEMTEST</schemaName>
+                          <type>TABLE</type>
+                        </parent>
+                        <type>COLUMN</type>
+                      </parent>
+                      <type>OracleColumnProperties</type>
+                    </parent>
+                    <type>LOB DESCRIPTOR</type>
+                  </value>
+                </entry>
+              </properties>
+              <retention>true</retention>
+              <storage>
+                <logging>true</logging>
+              </storage>
+              <storageEnabledInRow>true</storageEnabledInRow>
+            </LOBProperties>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>PARAMS_DESC</name>
+      <dataTypeUsage>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>CLOB</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>PARAMS_DESC</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+        <entry>
+          <key>OracleColumnProperties</key>
+          <value class="oracle.javatools.db.ora.OracleColumnProperties">
+            <LOBProperties>
+              <name></name>
+              <LOBCache>NOCACHE</LOBCache>
+              <LOBSegName>SYS_LOB0000247008C00006$$</LOBSegName>
+              <chunk>8192</chunk>
+              <properties>
+                <entry>
+                  <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                  <value class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>PARAMS_DESC</name>
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <name>J_REPORT</name>
+                          <identifier class="java.math.BigDecimal">247008</identifier>
+                          <schemaName>JEMTEST</schemaName>
+                          <type>TABLE</type>
+                        </parent>
+                        <type>COLUMN</type>
+                      </parent>
+                      <type>OracleColumnProperties</type>
+                    </parent>
+                    <type>LOB DESCRIPTOR</type>
+                  </value>
+                </entry>
+              </properties>
+              <retention>true</retention>
+              <storage>
+                <logging>true</logging>
+              </storage>
+              <storageEnabledInRow>true</storageEnabledInRow>
+            </LOBProperties>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>DATA_SOURCE</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">20</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>DATA_SOURCE</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>IS_SINGLE</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">1</value>
+          </entry>
+          <entry>
+            <key>scale</key>
+            <value class="java.lang.Long">0</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>IS_SINGLE</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>FIELDS_SQL</name>
+      <dataTypeUsage>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>CLOB</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>FIELDS_SQL</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+        <entry>
+          <key>OracleColumnProperties</key>
+          <value class="oracle.javatools.db.ora.OracleColumnProperties">
+            <LOBProperties>
+              <name></name>
+              <LOBCache>NOCACHE</LOBCache>
+              <LOBSegName>SYS_LOB0000247008C00009$$</LOBSegName>
+              <chunk>8192</chunk>
+              <properties>
+                <entry>
+                  <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                  <value class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>FIELDS_SQL</name>
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <name>J_REPORT</name>
+                          <identifier class="java.math.BigDecimal">247008</identifier>
+                          <schemaName>JEMTEST</schemaName>
+                          <type>TABLE</type>
+                        </parent>
+                        <type>COLUMN</type>
+                      </parent>
+                      <type>OracleColumnProperties</type>
+                    </parent>
+                    <type>LOB DESCRIPTOR</type>
+                  </value>
+                </entry>
+              </properties>
+              <retention>true</retention>
+              <storage>
+                <logging>true</logging>
+              </storage>
+              <storageEnabledInRow>true</storageEnabledInRow>
+            </LOBProperties>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>FROM_SQL</name>
+      <dataTypeUsage>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>CLOB</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>FROM_SQL</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+        <entry>
+          <key>OracleColumnProperties</key>
+          <value class="oracle.javatools.db.ora.OracleColumnProperties">
+            <LOBProperties>
+              <name></name>
+              <LOBCache>NOCACHE</LOBCache>
+              <LOBSegName>SYS_LOB0000247008C00010$$</LOBSegName>
+              <chunk>8192</chunk>
+              <properties>
+                <entry>
+                  <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                  <value class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>FROM_SQL</name>
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <name>J_REPORT</name>
+                          <identifier class="java.math.BigDecimal">247008</identifier>
+                          <schemaName>JEMTEST</schemaName>
+                          <type>TABLE</type>
+                        </parent>
+                        <type>COLUMN</type>
+                      </parent>
+                      <type>OracleColumnProperties</type>
+                    </parent>
+                    <type>LOB DESCRIPTOR</type>
+                  </value>
+                </entry>
+              </properties>
+              <retention>true</retention>
+              <storage>
+                <logging>true</logging>
+              </storage>
+              <storageEnabledInRow>true</storageEnabledInRow>
+            </LOBProperties>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>WHERE_SQL</name>
+      <dataTypeUsage>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>CLOB</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>WHERE_SQL</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+        <entry>
+          <key>OracleColumnProperties</key>
+          <value class="oracle.javatools.db.ora.OracleColumnProperties">
+            <LOBProperties>
+              <name></name>
+              <LOBCache>NOCACHE</LOBCache>
+              <LOBSegName>SYS_LOB0000247008C00011$$</LOBSegName>
+              <chunk>8192</chunk>
+              <properties>
+                <entry>
+                  <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+                  <value class="oracle.javatools.db.ReferenceID">
+                    <parent class="oracle.javatools.db.ReferenceID">
+                      <parent class="oracle.javatools.db.ReferenceID">
+                        <name>WHERE_SQL</name>
+                        <parent class="oracle.javatools.db.ReferenceID">
+                          <name>J_REPORT</name>
+                          <identifier class="java.math.BigDecimal">247008</identifier>
+                          <schemaName>JEMTEST</schemaName>
+                          <type>TABLE</type>
+                        </parent>
+                        <type>COLUMN</type>
+                      </parent>
+                      <type>OracleColumnProperties</type>
+                    </parent>
+                    <type>LOB DESCRIPTOR</type>
+                  </value>
+                </entry>
+              </properties>
+              <retention>true</retention>
+              <storage>
+                <logging>true</logging>
+              </storage>
+              <storageEnabledInRow>true</storageEnabledInRow>
+            </LOBProperties>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>CHILD_REPORT_ID</name>
+      <dataTypeUsage>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>CHILD_REPORT_ID</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>CHILD_REPORT_LINK</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">400</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>CHILD_REPORT_LINK</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>IMPLEMENT_REMARK</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">400</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>IMPLEMENT_REMARK</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>IMPLEMENT_EMP_ID</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">20</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>IMPLEMENT_EMP_ID</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>REPORT_STATUS</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">20</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">BYTE</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>REPORT_STATUS</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <type>COLUMN</type>
+          </value>
+        </entry>
+      </properties>
+    </column>
+  </columns>
+  <constraints>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <name>SYS_C00124733</name>
+      <checkCondition>data_source in (&apos;ora11g&apos;,&apos;dss&apos;)</checkCondition>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>SYS_C00124733</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>CheckConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <name>SYS_C00124734</name>
+      <checkCondition>is_single in (1,0)</checkCondition>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>SYS_C00124734</name>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>CheckConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <name>SYS_C00124737</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.NameBasedID">
+          <name>REQUIRE_EMP_ID</name>
+          <parent class="oracle.javatools.db.NameBasedID">
+            <name>J_REPORT</name>
+            <schemaName>JEMTEST</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>JEMTEST</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <onDeleteAction>NO_ACTION</onDeleteAction>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>SYS_C00124737</name>
+            <childObjectNames>
+              <childObjectName>REQUIRE_EMP_ID</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.ReferenceID">
+        <name>SYS_C0078281</name>
+        <childObjectNames>
+          <childObjectName>ID</childObjectName>
+        </childObjectNames>
+        <parent class="oracle.javatools.db.ReferenceID">
+          <name>EMPLOYEES</name>
+          <identifier class="java.math.BigDecimal">165355</identifier>
+          <schemaName>COMTEST</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <subType>PKConstraint</subType>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <name>SYS_C00124738</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.NameBasedID">
+          <name>CHILD_REPORT_ID</name>
+          <parent class="oracle.javatools.db.NameBasedID">
+            <name>J_REPORT</name>
+            <schemaName>JEMTEST</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>JEMTEST</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <onDeleteAction>NO_ACTION</onDeleteAction>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>SYS_C00124738</name>
+            <childObjectNames>
+              <childObjectName>CHILD_REPORT_ID</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.NameBasedID">
+        <name>SYS_C00124735</name>
+        <parent class="oracle.javatools.db.NameBasedID">
+          <name>J_REPORT</name>
+          <schemaName>JEMTEST</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>JEMTEST</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <name>SYS_C00124739</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.NameBasedID">
+          <name>IMPLEMENT_EMP_ID</name>
+          <parent class="oracle.javatools.db.NameBasedID">
+            <name>J_REPORT</name>
+            <schemaName>JEMTEST</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>JEMTEST</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <onDeleteAction>NO_ACTION</onDeleteAction>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>SYS_C00124739</name>
+            <childObjectNames>
+              <childObjectName>IMPLEMENT_EMP_ID</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>FKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.ReferenceID">
+        <name>SYS_C0078281</name>
+        <childObjectNames>
+          <childObjectName>ID</childObjectName>
+        </childObjectNames>
+        <parent class="oracle.javatools.db.ReferenceID">
+          <name>EMPLOYEES</name>
+          <identifier class="java.math.BigDecimal">165355</identifier>
+          <schemaName>COMTEST</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <subType>PKConstraint</subType>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <name>SYS_C00124735</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.NameBasedID">
+          <name>ID</name>
+          <parent class="oracle.javatools.db.NameBasedID">
+            <name>J_REPORT</name>
+            <schemaName>JEMTEST</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>JEMTEST</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <indexID class="oracle.javatools.db.NameBasedID">
+        <name>SYS_C00124735</name>
+        <parent class="oracle.javatools.db.NameBasedID">
+          <name>J_REPORT</name>
+          <schemaName>JEMTEST</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>JEMTEST</schemaName>
+        <type>INDEX</type>
+      </indexID>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>SYS_C00124735</name>
+            <childObjectNames>
+              <childObjectName>ID</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>PKConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+    <constraint class="oracle.javatools.db.UniqueConstraint">
+      <name>SYS_C00124736</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.NameBasedID">
+          <name>REPORT_NAME</name>
+          <parent class="oracle.javatools.db.NameBasedID">
+            <name>J_REPORT</name>
+            <schemaName>JEMTEST</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>JEMTEST</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <indexID class="oracle.javatools.db.NameBasedID">
+        <name>SYS_C00124736</name>
+        <parent class="oracle.javatools.db.NameBasedID">
+          <name>J_REPORT</name>
+          <schemaName>JEMTEST</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>JEMTEST</schemaName>
+        <type>INDEX</type>
+      </indexID>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>SYS_C00124736</name>
+            <childObjectNames>
+              <childObjectName>REPORT_NAME</childObjectName>
+            </childObjectNames>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <subType>UniqueConstraint</subType>
+            <type>CONSTRAINT</type>
+          </value>
+        </entry>
+      </properties>
+    </constraint>
+  </constraints>
+  <indexes>
+    <index>
+      <name>SYS_C00124735</name>
+      <columnExpressions>
+        <columnExpression>
+          <expressionSource>ID</expressionSource>
+          <orderType>ASC</orderType>
+          <properties>
+            <entry>
+              <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+              <value class="oracle.javatools.db.ReferenceID">
+                <name>ID</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>SYS_C00124735</name>
+                  <identifier class="java.math.BigDecimal">247021</identifier>
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>J_REPORT</name>
+                    <identifier class="java.math.BigDecimal">247008</identifier>
+                    <schemaName>JEMTEST</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <schemaName>JEMTEST</schemaName>
+                  <type>INDEX</type>
+                </parent>
+                <type>IndexObject</type>
+              </value>
+            </entry>
+          </properties>
+        </columnExpression>
+      </columnExpressions>
+      <indexType>UNIQUE</indexType>
+      <parallelDegree>1</parallelDegree>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>SYS_C00124735</name>
+            <identifier class="java.math.BigDecimal">247021</identifier>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <schemaName>JEMTEST</schemaName>
+            <type>INDEX</type>
+          </value>
+        </entry>
+        <entry>
+          <key>OracleStorageProperties</key>
+          <value class="oracle.javatools.db.ora.OracleStorageProperties">
+            <bufferMode>DEFAULT</bufferMode>
+            <initrans>2</initrans>
+            <logging>true</logging>
+            <percentFree>10</percentFree>
+            <tablespaceID class="oracle.javatools.db.ReferenceID">
+              <name>CDRDATA</name>
+              <type>TABLESPACE</type>
+            </tablespaceID>
+          </value>
+        </entry>
+      </properties>
+      <schema>
+        <name>JEMTEST</name>
+      </schema>
+      <systemGenerated>true</systemGenerated>
+    </index>
+    <index>
+      <name>SYS_C00124736</name>
+      <columnExpressions>
+        <columnExpression>
+          <expressionSource>REPORT_NAME</expressionSource>
+          <orderType>ASC</orderType>
+          <properties>
+            <entry>
+              <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+              <value class="oracle.javatools.db.ReferenceID">
+                <name>REPORT_NAME</name>
+                <parent class="oracle.javatools.db.ReferenceID">
+                  <name>SYS_C00124736</name>
+                  <identifier class="java.math.BigDecimal">247022</identifier>
+                  <parent class="oracle.javatools.db.ReferenceID">
+                    <name>J_REPORT</name>
+                    <identifier class="java.math.BigDecimal">247008</identifier>
+                    <schemaName>JEMTEST</schemaName>
+                    <type>TABLE</type>
+                  </parent>
+                  <schemaName>JEMTEST</schemaName>
+                  <type>INDEX</type>
+                </parent>
+                <type>IndexObject</type>
+              </value>
+            </entry>
+          </properties>
+        </columnExpression>
+      </columnExpressions>
+      <indexType>UNIQUE</indexType>
+      <parallelDegree>1</parallelDegree>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+          <value class="oracle.javatools.db.ReferenceID">
+            <name>SYS_C00124736</name>
+            <identifier class="java.math.BigDecimal">247022</identifier>
+            <parent class="oracle.javatools.db.ReferenceID">
+              <name>J_REPORT</name>
+              <identifier class="java.math.BigDecimal">247008</identifier>
+              <schemaName>JEMTEST</schemaName>
+              <type>TABLE</type>
+            </parent>
+            <schemaName>JEMTEST</schemaName>
+            <type>INDEX</type>
+          </value>
+        </entry>
+        <entry>
+          <key>OracleStorageProperties</key>
+          <value class="oracle.javatools.db.ora.OracleStorageProperties">
+            <bufferMode>DEFAULT</bufferMode>
+            <initrans>2</initrans>
+            <logging>true</logging>
+            <percentFree>10</percentFree>
+            <tablespaceID class="oracle.javatools.db.ReferenceID">
+              <name>CDRDATA</name>
+              <type>TABLESPACE</type>
+            </tablespaceID>
+          </value>
+        </entry>
+      </properties>
+      <schema>
+        <name>JEMTEST</name>
+      </schema>
+      <systemGenerated>true</systemGenerated>
+    </index>
+  </indexes>
+  <properties>
+    <entry>
+      <key>OfflineDBConstants.IMPORT_SOURCE_ID</key>
+      <value class="oracle.javatools.db.ReferenceID">
+        <name>J_REPORT</name>
+        <identifier class="java.math.BigDecimal">247008</identifier>
+        <schemaName>JEMTEST</schemaName>
+        <type>TABLE</type>
+      </value>
+    </entry>
+    <entry>
+      <key>OracleStorageProperties</key>
+      <value class="oracle.javatools.db.ora.OracleStorageProperties">
+        <bufferMode>DEFAULT</bufferMode>
+        <initrans>1</initrans>
+        <logging>true</logging>
+        <percentFree>10</percentFree>
+        <tablespaceID class="oracle.javatools.db.ReferenceID">
+          <name>CDRDATA</name>
+          <type>TABLESPACE</type>
+        </tablespaceID>
+      </value>
+    </entry>
+    <entry>
+      <key>OracleTableProperties</key>
+      <value class="oracle.javatools.db.ora.OracleTableProperties">
+        <tableCompression>NOCOMPRESS</tableCompression>
+      </value>
+    </entry>
+    <entry>
+      <key>TableType</key>
+      <value class="oracle.javatools.db.Table$TableType">NORMAL</value>
+    </entry>
+  </properties>
+  <schema>
+    <name>JEMTEST</name>
+  </schema>
+</table>

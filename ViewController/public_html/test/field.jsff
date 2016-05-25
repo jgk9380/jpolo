@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>editPolo</description>
+                <attribute>
+                    <attribute-name>poloFiled</attribute-name>
+                    <attribute-class>jpolo.iface.polo.IPoloField</attribute-class>
+                    <required>true</required>
+                </attribute>
+            </component>
+        </af:xmlContent>
+        <af:inputText label="#{attrs.poloFiled.meta.label}:" value="#{attrs.poloFiled.PValue}" id="iy2#{attrs.poloFiled.meta.name}"
+                      rendered="#{attrs.poloFiled.meta.type=='String'}"/>
+    </af:componentDef>
+</ui:composition>

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>editPolo</description>
+                <!--编辑polo的字段，根据字段类型确定编辑类型-->
+                <attribute>
+                    <attribute-name>object</attribute-name>
+                    <attribute-class>java.lang.Object</attribute-class>
+                    <required>true</required>
+                </attribute>
+                <attribute>
+                    <attribute-name>name</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                    <required>true</required>
+                </attribute>
+            </component>
+        </af:xmlContent>
+        <af:declarativeComponent id="jd#{attrs.name}" viewId="/template/component/polo/EditPoloField.jsff">
+            <f:attribute name="field" value="#{objectToPoloProxy.getPoloField(attrs.object,attrs.name)}"/>
+        </af:declarativeComponent>
+    </af:componentDef>
+</ui:composition>

@@ -1,0 +1,34 @@
+BODY {
+    MARGIN: 0em;
+    PADDING: 0em;
+    FONT-SIZE: 12px;
+    FONT-FAMILY: "";
+  background: url(/resources/images/menu/bg.jpg)top center no-repeat;
+}
+.bdimg {
+    MARGIN: 0em;
+    PADDING: 0em;
+    FONT-SIZE: 12px;
+    FONT-FAMILY: "";
+  background: url(/resources/images/menu/bg.jpg)top center no-repeat;
+}
+
+.login {
+    margin: 270px auto 0px auto;
+    width: 440px;
+    height: 180px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.text {
+    width: 200px;
+    height: 20px;
+    border: #b4b4b3 1px solid;
+}
+
+.text1 {
+    width: 80px;
+    height: 20px;
+    border: #b4b4b3 1px solid;
+}

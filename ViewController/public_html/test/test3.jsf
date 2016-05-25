@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="test3.jsf" id="d1">
+        <af:form id="f1">
+            <af:showDetail disclosed="true" id="sd1">
+                <af:button text="button 1" id="b1"/>
+                <af:button text="button 2" id="b4"/>
+            </af:showDetail>
+    
+            <af:button text="close" id="b2" action="#{sessionManager.test_close_action}"/>
+            <af:button text="open_pop" id="b3" action="#{sessionManager.test_pop_action}"/>
+        </af:form>
+    </af:document>
+    <!--oracle-jdev-comment:preferred-managed-bean-name:sessionManager-->
+</f:view>

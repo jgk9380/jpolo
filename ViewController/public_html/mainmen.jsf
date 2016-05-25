@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="menu.jsf" id="d1">
+        <af:form id="f1">
+         <af:panelGroupLayout id="pgl1" inlineStyle="width:100vw;" layout="horizontal" halign="left">
+                <af:menuBar id="menuBar" value="yy">
+                    <af:forEach items="#{sessionManager.menuBar.menuList}" var="menu">
+                        <af:declarativeComponent id="dc#{menu.id}" viewId="/template/component/menu.jsff">
+                            <f:attribute name="menu" value="#{menu}"/>
+                            <f:attribute name="loginID" value="#{sessionManager.loginUser.loginID}"/>
+                        </af:declarativeComponent>
+                    </af:forEach>
+                </af:menuBar>
+                <!--<af:link text="欢迎您：#{attrs.loginUser.userName}" action="#{attrs.loginUser.loginOutAction}" id="l1" inlineStyle="margin-right:0vw;"/>-->
+            </af:panelGroupLayout>
+        </af:form>
+    </af:document>
+</f:view>

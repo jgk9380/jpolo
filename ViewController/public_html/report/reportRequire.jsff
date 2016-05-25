@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>xdfg</description>
+            </component>
+        </af:xmlContent>
+        <af:panelFormLayout id="pgl2" rendered="#{!(reportAdmin.currentBuildingReport==null)}">
+            <af:inputText label="报表ID：" id="it1" value="#{reportAdmin.currentBuildingReport.id}" disabled="true"/>
+            <af:inputText label="报表名称：" id="it2" disabled="true"
+                          value="#{reportAdmin.currentBuildingReport.reportName}"/>
+            <af:inputText label="参数描叙：" id="it3" columns="80" rows="3" disabled="true"
+                          value="#{reportAdmin.currentBuildingReport.paramsDesc}"/>
+            <af:inputText label="字段描叙：" id="it4" columns="80" rows="3" disabled="true"
+                          value="#{reportAdmin.currentBuildingReport.fieldsDesc}"/>
+            <af:inputText label="报表说明：" id="it6" columns="80" rows="3" disabled="true"
+                          value="#{reportAdmin.currentBuildingReport.remarkDesc}"/>
+            <af:inputText label="申请人：" id="it5" disabled="true"
+                          value="#{reportAdmin.currentBuildingReport.requireEmp.name}"/>
+        </af:panelFormLayout>
+    </af:componentDef>
+</ui:composition>
+

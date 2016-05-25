@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="processTask.jsf" id="d1">
+        <af:form id="f1"  partialTriggers="totd todoT">
+            <af:panelSplitter id="ps1" splitterPosition="300">
+                <f:facet name="first">
+                    <af:group id="g1">
+                  
+                        <af:showDetail id="ph1" disclosedText="新任务" disclosed="true">
+                            <af:button text="更新数据" action="#{taskManager.refershMyToDoTask}" id="totd" />
+                            <af:table value="#{taskManager.myToDoTask}" var="row" rowBandingInterval="0" id="todoT" rowSelection="single"                                     
+                                      selectionListener="#{taskManager.myToDoTaskSelectListener}">
+                                <?audit suppress oracle.adf.faces.compreqsummary?><?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                                <af:column sortable="false" headerText="任务对象" id="c2" width="85">
+                                    <af:outputText value="#{row.taskObject}" id="ot2"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="任务内容" id="c1">
+                                    <af:outputText value="#{row.content}" id="ot1"/>
+                                </af:column>
+                                <af:column sortable="true" headerText="结束日期" id="c5" sortProperty="endDate">
+                                    <af:outputText value="#{row.endDate}" id="ot5"/>
+                                </af:column>
+                            </af:table>
+                        </af:showDetail>
+                        <af:showDetail id="sd1" disclosedText="提交任务">
+                            <af:button text="暂无2" id="b2"/>
+                        </af:showDetail>                        
+                       
+                        <af:showDetail id="sd3" disclosedText="完工任务">
+                            <af:button text="暂无2" id="b5"/>
+                        </af:showDetail>
+                    </af:group>
+                </f:facet>
+                <f:facet name="second">
+                    <af:panelFormLayout id="g2" rendered="#{taskManager.toDoTask!=null}"   partialTriggers="todoT subtask">
+                        <af:inputText label="任务目标：" value="#{taskManager.toDoTask.taskObject}" disabled="true" id="it3"/>
+                        <af:inputText label="任务内容：" value="#{taskManager.toDoTask.content}" disabled="true" rows="2" id="it2"/>                        
+                        <af:inputText label="任务要求：" value="#{taskManager.toDoTask.remark}" disabled="true" id="it1" rows="2" />
+                        <af:inputText label="处理结果：" value="#{taskManager.toDoTask.lastResult}" rows="2" id="it4"/>
+                        <f:facet name="footer">
+                            <af:button text="提交" id="subtask" actionListener="#{taskManager.submitTask}"/>                            
+                        </f:facet>
+                    </af:panelFormLayout>
+                </f:facet>
+            </af:panelSplitter>
+        </af:form>
+    </af:document>
+</f:view>

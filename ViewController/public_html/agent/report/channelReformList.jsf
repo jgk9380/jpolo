@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="渠道整改列表" id="d1">
+        <af:form id="f2">
+            <af:popup childCreation="immediate" autoCancel="disabled" id="p1" contentDelivery="immediate">
+                <af:dialog id="d2" type="none">
+                    <af:table value="#{channelReFormList.reformPlan.crpList}" var="row" rowBandingInterval="0" id="t2">
+                        <af:column sortable="false" headerText="整改事项" align="start" id="c19">
+                            <af:outputText value="#{row.item}" id="ot18"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="现状" align="start" id="c17">
+                            <af:outputText value="#{row.currentValue}" id="ot16"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="目标值" align="start" id="c22">
+                            <af:inputText value="#{row.planValue}" id="ot21"
+                                          disabled="#{sessionManager.loginUser.positionTypeId!=10028 or channelReFormList.reformPlan.status!=0}"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="措施" align="start" id="c24">
+                            <af:inputText value="#{row.step}" id="ot23"
+                                          disabled="#{sessionManager.loginUser.positionTypeId!=10028 or channelReFormList.reformPlan.status!=0}"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="需求资源" align="start" id="c23">
+                            <af:inputText value="#{row.reqireResource}" id="ot22"
+                                          disabled="#{sessionManager.loginUser.positionTypeId!=10028 or channelReFormList.reformPlan.status!=0}"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="完成日期" align="start" id="c16">
+                            <af:inputDate value="#{row.completeDate}" id="ot15"
+                                          disabled="#{sessionManager.loginUser.positionTypeId!=10028 or channelReFormList.reformPlan.status!=0}"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="网格意见" align="start" id="c18">
+                            <af:inputText value="#{row.gridOpinion}" id="ot17"
+                                          disabled="#{sessionManager.loginUser.positionTypeId!=10027 or channelReFormList.reformPlan.status!=1}"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="市场部意见" align="start" id="c20">
+                            <af:inputText value="#{row.marketOpinion}" id="ot19"
+                                          disabled="#{!sessionManager.loginUser.isHasAuth('marketcheck') or channelReFormList.reformPlan.status!=2}"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="市场部核查" align="start" id="c15">
+                            <af:inputText value="#{row.marketCheckResult}" id="it1"
+                                          disabled="#{!sessionManager.loginUser.isHasAuth('marketcheck') or channelReFormList.reformPlan.status!=3  }"/>
+                        </af:column>
+                    </af:table>
+                    <af:button text="保存" id="b2" actionListener="#{channelReFormList.reformPlan.saveCrpList}"/>
+                </af:dialog>
+            </af:popup>
+        </af:form>
+        <af:form id="f1">
+            <af:panelGroupLayout layout="horizontal" id="pgl1">
+                <af:selectOneChoice label="月份：" value="#{channelReFormList.month}" immediate="true" autoSubmit="true"
+                                    valueChangeListener="#{channelReFormList.monthChangerListen}" id="mSoc">
+                    <f:selectItems value="#{agentReport.selectItemListDeposit.monthSelectItemList}" id="si1"/>
+                </af:selectOneChoice>
+                <af:spacer width="10" height="10" id="s3"/>
+                <af:selectOneChoice label="业务单元：" autoSubmit="true" value="#{channelReFormList.queryCity}"
+                                    valueChangeListener="#{channelReFormList.cityChangeLisener}" id="citySoc"
+                                    unselectedLabel="无">
+                    <f:selectItems value="#{agentReport.selectItemListDeposit.citySelectItemList}" id="si2"/>
+                </af:selectOneChoice>
+                <af:spacer width="10" height="10" id="s2"/>
+                <af:selectOneChoice label="网格：" value="#{channelReFormList.queryGrid}" autoSubmit="true"
+                                    valueChangeListener="#{channelReFormList.gridChangeLisener}" id="gridSoc"
+                                    unselectedLabel="无" partialTriggers="citySoc">
+                    <f:selectItems value="#{agentReport.selectItemListDeposit.getGridSelectItemList(channelReFormList.queryCity)}"
+                                   id="si3"/>
+                </af:selectOneChoice>
+                <af:button text="下载" id="b1">
+                    <af:exportCollectionActionListener type="excelHTML" exportedId="t1"/>
+                </af:button>
+            </af:panelGroupLayout>
+            <af:table value="#{channelReFormList.reFromList}" var="row" rowBandingInterval="0" id="t1"
+                      rowSelection="single" partialTriggers="::mSoc ::citySoc ::gridSoc ::b2" fetchSize="25"
+                      filterVisible="true">
+                <!--chnl_id,
+ chnl_name,
+ city_name,
+ grid_staff,
+ chnl_staff,
+ office_kind_name,-->
+                <af:column sortable="true" headerText="渠道ID" id="c1">
+                    <af:outputText value="#{row['CHNL_ID']}" id="ot1"/>
+                </af:column>
+                <af:column sortable="true" headerText="渠道名称" id="c2">
+                    <af:outputText value="#{row['chnl_name']}" id="ot2"/>
+                </af:column>
+                <af:column sortable="true" headerText="业务单元" id="c3">
+                    <af:outputText value="#{row['city_name']}" id="ot3"/>
+                </af:column>
+                <af:column sortable="true" headerText="网格经理" id="c4"    sortProperty="grid_staff">
+                    <af:outputText value="#{row['grid_staff']}" id="ot4"/>
+                </af:column>
+                <af:column sortable="true" headerText="渠道经理" id="c5" sortProperty="chnl_staff">
+                    <af:outputText value="#{row['chnl_staff']}" id="ot5"/>
+                </af:column>
+                <af:column sortable="true" headerText="渠道类型" id="c14" sortProperty="office_kind_name">
+                    <af:outputText value="#{row['office_kind_name']}" id="ot14"/>
+                </af:column>
+                <!--
+                    arg_charge,人均产能
+                    curr_user_by,存量保有
+                    new_user_by,新增保有
+                    curr_fee_by,收入保有
+                    new_fee_by,新增收入保有
+                    end maoli_fee,毛利
+                    cost_rate    费用占收比 -->
+                <af:column sortable="true" headerText="人均产能" id="c6" sortProperty="arg_charge">
+                    <af:outputText value="#{row['arg_charge']}"  id="ot6" inlineStyle="#{row['arg_charge'] gt 100?'color:black':'color:Red;'}"/>
+                </af:column>
+                <af:column sortable="true" headerText="存量保有" sortProperty="curr_user_by" id="c7">
+                    <af:outputText value="#{row['curr_user_by']}%" inlineStyle="#{row['curr_user_by'] gt 70?'color:black':'color:Red;'}" id="ot7" />
+                </af:column>
+                <af:column sortable="true" headerText="新增保有" sortProperty="new_fee_by" id="c8">
+                    <af:outputText value="#{row['new_fee_by']}%" inlineStyle="#{row['new_fee_by'] gt 70?'color:black':'color:Red;'}" id="ot8"/>
+                </af:column>
+                <af:column sortable="true" headerText="收入保有" sortProperty="curr_fee_by" id="c9">
+                    <af:outputText value="#{row['curr_fee_by']}%"  inlineStyle="#{row['curr_fee_by'] gt 70?'color:black':'color:Red;'}" id="ot9"/>
+                </af:column>
+                <af:column sortable="true" headerText="新增收入保有" sortProperty="new_fee_by" id="c10">
+                    <af:outputText value="#{row['new_fee_by']}%" inlineStyle="#{row['new_fee_by'] gt 70?'color:black':'color:Red;'}" id="ot10"/>
+                </af:column>
+                <af:column sortable="true" headerText="毛利" sortProperty="maoli_fee" id="c11">
+                    <af:outputText value="#{row['maoli_fee']}"  inlineStyle="#{row['maoli_fee'] &#62;&#61; 0?'color:black':'color:Red;'}"  id="ot11"/>
+                </af:column>
+                <af:column sortable="true" headerText="费用占收比" sortProperty="cost_rate" id="c12">
+                    <af:outputText value="#{row['cost_rate']}%" inlineStyle="#{row['cost_rate'] gt 0.70?'color:black':'color:Red;'}" id="ot12"/>
+                </af:column>
+                <af:column sortable="true" headerText="整改情况" sortProperty="cost_rate" id="c13">
+                    <af:link text="#{channelReFormList.getTitle(channelReFormList.month,row['CHNL_ID'])}"
+                             action="#{channelReFormList.reformPlanAction}" id="l2">
+                        <af:setActionListener to="#{sessionScope.month}" from="#{channelReFormList.month}"/>
+                        <af:setActionListener to="#{sessionScope.channelId}" from="#{row['CHNL_ID']}"/>
+                    </af:link>
+                    <!--<af:link text="网格审核" action="#{channelReFormList.reformPlan}" id="l3">
+                        <af:setActionListener to="#{sessionScope.month}" from="#{channelReFormList.month}"/>
+                        <af:setActionListener to="#{sessionScope.channelId}" from="#{row['CHNL_ID']}"/>
+                    </af:link>
+                    <af:link text="市场部审核" action="#{channelReFormList.reformPlan}" id="l4">
+                        <af:setActionListener to="#{sessionScope.month}" from="#{channelReFormList.month}"/>
+                        <af:setActionListener to="#{sessionScope.channelId}" from="#{row['CHNL_ID']}"/>
+                    </af:link>-->
+                    <!--<af:link text="查看" action="#{channelReFormList.reformPlanAction}" id="l1">
+                        <af:setActionListener to="#{sessionScope.month}" from="#{channelReFormList.month}"/>
+                        <af:setActionListener to="#{sessionScope.channelId}" from="#{row['CHNL_ID']}"/>
+                    </af:link>-->
+                </af:column>
+            </af:table>
+        </af:form>
+    </af:document>
+</f:view>

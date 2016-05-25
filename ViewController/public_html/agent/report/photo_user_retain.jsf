@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="拍照用户保有.jsf" id="d1">
+        <af:form id="f1">
+            <af:panelGroupLayout layout="horizontal" id="pgl1">
+                <af:selectOneChoice label="月份：" value="#{agentReport.photoRetain.photoQueryMonth}"
+                                    valueChangeListener="#{agentReport.photoRetain.photoQueryMonthChangeLisener}"
+                                    autoSubmit="true" id="mSoc">
+                    <f:selectItems value="#{agentReport.selectItemListDeposit.monthSelectItemList}" id="si1"/>
+                </af:selectOneChoice>
+                <af:spacer width="10" height="10" id="s1"/>
+                <af:selectOneChoice label="业务单元：" autoSubmit="true" value="#{agentReport.photoRetain.city}"
+                                    valueChangeListener="#{agentReport.photoRetain.cityChangeLisener}" id="citySoc"
+                                    unselectedLabel="无">
+                    <f:selectItems value="#{agentReport.selectItemListDeposit.citySelectItemList}" id="si2"/>
+                </af:selectOneChoice>
+                <af:spacer width="10" height="10" id="s2"/>
+                <af:selectOneChoice label="网格：" value="#{agentReport.photoRetain.grid}" autoSubmit="true"
+                                    valueChangeListener="#{agentReport.photoRetain.gridChangeLisener}" id="gridSoc"
+                                    unselectedLabel="无" partialTriggers="citySoc">
+                    <f:selectItems value="#{agentReport.selectItemListDeposit.getGridSelectItemList(agentReport.photoRetain.city)}"
+                                   id="si3"/>
+                </af:selectOneChoice>
+                <af:spacer width="10" height="10" id="s3"/>
+                <af:button text="下载" id="b1">
+                    <af:exportCollectionActionListener type="excelHTML" exportedId="t1"/>
+                </af:button>
+            </af:panelGroupLayout>
+            <af:table value="#{agentReport.photoRetain.userReatianReport}" var="row" rowBandingInterval="0" id="t1"
+                      partialTriggers="::mSoc ::citySoc ::gridSoc">
+                <af:column sortable="false" headerText="业务单元" id="c1">
+                    <af:outputText value="#{row['cname']}" id="ot1"/>
+                    <f:facet name="footer">
+                        <af:outputText value="合计" id="ot5"/>
+                    </f:facet>
+                </af:column>
+                <af:column sortable="false" headerText="拍照用户" id="c2">
+                    <af:outputText value="#{row['photo_u']}" id="ot2"/>
+                    <f:facet name="footer">
+                        <af:outputText value="#{agentReport.reportUtils.sumListMap(agentReport.photoRetain.userReatianReport,'photo_u')}"
+                                       id="ot6"/>
+                    </f:facet>
+                </af:column>
+                <af:forEach items="#{agentReport.photoRetain.getMonthList('u')}" var="month">
+                    <af:column sortable="false" headerText="#{month}" id="c3" width="40">
+                        <af:outputText value="#{row[month]}" id="ot3"/>
+                        <f:facet name="footer">
+                            <af:outputText value="#{agentReport.reportUtils.sumListMap(agentReport.photoRetain.userReatianReport,month)}"
+                                           id="ot7"/>
+                        </f:facet>
+                    </af:column>
+                </af:forEach>
+                <af:column sortable="false" headerText="保有率" id="c4">
+                    <af:outputText value="#{agentReport.reportUtils.divNumber(row[agentReport.photoRetain.getMaxMonth('u')],row['photo_u'])}%"
+                                   id="ot4"/>
+                    <f:facet name="footer">
+                        <af:outputText value="#{agentReport.reportUtils.divNumber(agentReport.reportUtils.sumListMap(agentReport.photoRetain.userReatianReport,agentReport.photoRetain.getMaxMonth('u')),agentReport.reportUtils.sumListMap(agentReport.photoRetain.userReatianReport,'photo_u'))}%"
+                                       id="ot8"/>
+                    </f:facet>
+                </af:column>
+            </af:table>
+        </af:form>
+    </af:document>
+</f:view>

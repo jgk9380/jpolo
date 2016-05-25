@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>xdfg</description>
+            </component>
+        </af:xmlContent>
+        <af:group id="dc_g1">
+            <af:button text="初始化测试" actionListener="#{reportAdmin.initTest}" id="dc_b1"/>
+            <af:group id="dc_g2" rendered="#{reportAdmin.reportHolder.report.reportParams!=null}">
+                <af:forEach items="#{reportAdmin.reportHolder.report.reportParams}" var="rParam">
+                    <c:if test="#{rParam.type=='String'}">
+                        <af:inputText label="#{rParam.label}:" value="#{reportAdmin.reportHolder.paramMap[rParam.name]}"
+                                      id="it1"/>
+                    </c:if>
+                    <c:if test="#{rParam.type=='Date'}">
+                        <af:inputDate label="#{rParam.label}:" value="#{reportAdmin.reportHolder.paramMap[rParam.name]}"
+                                      id="id1"/>
+                    </c:if>
+                    <c:if test="#{rParam.type=='Number'}">
+                        <af:inputNumberSpinbox label="#{rParam.label}:"
+                                               value="#{reportAdmin.reportHolder.paramMap[rParam.name]}" id="id2"/>
+                    </c:if>
+                </af:forEach>
+            </af:group>
+            <af:button text="查询" action="#{reportAdmin.reportHolder.refresh}" partialSubmit="true" id="b5">
+                <af:clientListener method="enforcePreventUserInput" type="click"/>
+            </af:button>
+            <af:table var="row" rowBandingInterval="0" id="reportT" rowSelection="single"
+                      rendered="#{reportAdmin.reportHolder.reportValue!=null}"
+                      value="#{reportAdmin.reportHolder.reportValue}" partialTriggers="::b5">
+                <?audit suppress oracle.adf.faces.compreqsummary?>
+                 
+                <?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                 
+                <af:forEach items="#{reportAdmin.reportHolder.report.reportColumns}" var="rCol">
+                    <af:column sortable="false" headerText="#{rCol.headerText}" id="c5">
+                        <af:outputText value="#{row[rCol.name]}" id="ot#{rCol.name}"/>
+                        <f:facet name="footer">
+                            <af:outputText value="#{reportAdmin.reportHolder.getFooterValue(rCol)}"
+                                           id="otf#{rCol.name}"/>
+                        </f:facet>
+                    </af:column>
+                </af:forEach>
+                <af:column sortable="false" headerText="col1" id="dc_c1">
+                    <af:outputText value="#{row.col1}" id="dc_ot1"/>
+                </af:column>
+            </af:table>
+        </af:group>
+    </af:componentDef>
+</ui:composition>
+

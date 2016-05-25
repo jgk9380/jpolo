@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>showEntityViewTable</description>
+                <attribute>
+                    <attribute-name>entity</attribute-name>
+                    <attribute-class>interfaces.Entity.IEntity</attribute-class>
+                    <required>true</required>
+                </attribute>
+                <attribute>
+                    <attribute-name>popID</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                    <required>false</required>
+                </attribute>
+            </component>
+        </af:xmlContent>
+        <af:panelFormLayout id="pfl1" labelAlignment="start" maxColumns="2" rows="8"  rendered="#{!(attrs.entity==null)}">
+            <af:forEach var="prop" items="#{metaInfo.getEntityPropSortedBySeq(attrs.entity)}">
+                <af:declarativeComponent id="dc2" viewId="/template/component/jem/oututPropertyLableValue.jsff">
+                    <f:attribute name="prop" value="#{attrs.entity.getProperty(prop)}"/>
+                </af:declarativeComponent>
+            </af:forEach>            
+            <f:facet name="footer"/>
+        </af:panelFormLayout>
+    </af:componentDef>
+</ui:composition>

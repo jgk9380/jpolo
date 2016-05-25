@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="contactAdd.jsf" id="d1" partialTriggers="chanT">
+        <af:form id="f1">
+            <af:panelGroupLayout id="pgl2" layout="horizontal" valign="top">
+                <af:panelGroupLayout id="pgl3">
+                    <af:table value="#{contactAdmin.cityList}" var="row" rowBandingInterval="0" id="cityt"
+                              rowSelection="single" selectionListener="#{contactAdmin.citySelect}">
+                        <af:column sortable="false" headerText="业务单元" id="c1">
+                            <af:outputText value="#{row.name}" id="ot1"/>
+                        </af:column>
+                        <!--<af:column sortable="false" headerText="负责人" id="c2">
+                            <af:selectOneChoice label=" " value="#{row.manager}" id="soc1">
+                                <f:selectItems value="#{empAdmin.cityManagerSelectItem}" id="si1"/>
+                            </af:selectOneChoice>
+                            -->
+                        <!--<af:outputText value="#{row.manager.name}" id="ot2"/>-->
+                        <!--
+                        </af:column>-->
+                    </af:table>
+                </af:panelGroupLayout>
+                <af:spacer width="50" height="10" id="s1"/>
+                <af:panelGroupLayout id="pgl4">
+                    <af:panelGroupLayout layout="horizontal" id="pgl5">
+                        <af:inputText label="代理商名称：" value="#{contactAdmin.agentQueryName}" id="it3"/>
+                        <af:button id="query" text="查询" actionListener="#{contactAdmin.queryAgent}"/>
+                    </af:panelGroupLayout>
+                    <af:table value="#{contactAdmin.channelList}" var="row" rowBandingInterval="0" id="chanT"
+                              partialTriggers="::cityt ::b1 ::query" rowSelection="single"
+                              selectionListener="#{contactAdmin.channelSelect}">
+                        <af:column sortable="false" headerText="id" id="c3">
+                            <af:outputText value="#{row.id}" id="ot3"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="营业厅" id="c6">
+                            <af:outputText value="#{row.name}" id="ot5"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="合同" id="c4">
+                            <af:outputText value="#{row.contactSize}" id="ot4"/>
+                        </af:column>
+                    </af:table>
+                </af:panelGroupLayout>
+                <af:spacer width="50" height="10" id="s2"/>
+                <af:panelGroupLayout layout="vertical" id="contpgl" partialTriggers="cityt chanT contl b3 b1">
+                    <af:panelGroupLayout id="pgl6" partialTriggers="chanT">
+                        <af:forEach items="#{contactAdmin.channel.channelContactSet}" var="contact">
+                            <!--af:link text="#{contact.id}" actionListener="#{contactAdmin.contactSelect}" id="contl"-->
+                            <af:link text="#{contact.id}" actionListener="#{contactAdmin.contactSelect}" id="contl">
+                                <f:attribute name="contactId" value="#{contact.id}"/>
+                                <af:setActionListener from="#{contact}" to="#{contactAdmin.cc}"/>
+                            </af:link>
+                            <af:spacer width="50" height="10" id="s3"/>
+                        </af:forEach>
+                    </af:panelGroupLayout>
+                    <af:spacer width="50" height="20" id="s4"/>
+                    <af:button text="创建合同" id="b3" actionListener="#{contactAdmin.addContact}"
+                               rendered="#{contactAdmin.cc==null and contactAdmin.channel!=null}"/>
+                    <af:panelFormLayout id="contForm" partialTriggers="b1 contl" rendered="#{contactAdmin.cc!=null}">
+                        <af:inputText label="合同号：" value="#{contactAdmin.cc.id}" id="it1"/>
+                        <!--<af:selectOneChoice label="代理商" value="#{contactAdmin.cc.channel}" id="smc1">
+                            <f:selectItems value="#{contactAdmin.channelSelectItemList}" id="si1"/>
+                        </af:selectOneChoice>-->
+                        <af:panelGroupLayout id="pgl1" partialTriggers="::b2">
+                            <!--增加指标-->
+                            <af:button text="增加指标" actionListener="#{contactAdmin.addDest}" id="b2"/>
+                            <af:table value="#{contactAdmin.cc.channelContactDestList}" var="row" editingMode="editAll"
+                                      rowBandingInterval="0" id="t1" partialTriggers="::b2"
+                                      rendered="#{contactAdmin.cc.channelContactDestList!=null}">
+                                <af:column sortable="false" headerText="指标" id="c5">
+                                    <!--<af:outputText value="#{row.codeContactDestType.name}" id="ot1"/>-->
+                                    <af:selectOneChoice label="指标" value="#{row.codeContactDestType}" id="soc1">
+                                        <f:selectItems value="#{contactAdmin.codeContactDestTypeSelectItem}" id="si2"/>
+                                    </af:selectOneChoice>
+                                </af:column>
+                                <af:column sortable="false" headerText="指标值" id="c2">
+                                    <af:inputNumberSpinbox value="#{row.dest}" id="ot2"/>
+                                </af:column>
+                            </af:table>
+                        </af:panelGroupLayout>
+                        <af:inputDate label="开始日期：" value="#{contactAdmin.cc.startDate}" id="id1"/>
+                        <af:inputDate label="结束日期：" value="#{contactAdmin.cc.endDate}" id="id2"/>
+                        <af:inputNumberSpinbox label="进场费：" value="#{contactAdmin.cc.enterFee}" id="id3"/>
+                        <af:inputNumberSpinbox label="补贴费：" value="#{contactAdmin.cc.subsidyFee}" id="id4"/>
+                        <af:inputText label="房租合同号：" value="#{contactAdmin.cc.rentContactId}" id="it2"/>
+                        <af:inputNumberSpinbox label="房租合同年租金：" value="#{contactAdmin.cc.rentFee}" id="ins1"/>
+                        <af:inputNumberSpinbox label="补贴期房租金额 ：" value="#{contactAdmin.cc.subsidyPeriodRentFee}"
+                                               id="ins2"/>
+                        <f:facet name="footer">
+                            <af:button text="保存" actionListener="#{contactAdmin.save}" id="b1"/>
+                        </f:facet>
+                    </af:panelFormLayout>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+        </af:form>
+    </af:document>
+</f:view>

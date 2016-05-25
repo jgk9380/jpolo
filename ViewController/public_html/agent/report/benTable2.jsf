@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="benTable2.jsf" id="d1">
+        <af:form id="f1">
+            <af:popup childCreation="deferred" autoCancel="disabled" id="p1">
+                <af:dialog id="d2" title="选择表列" type="none">
+                    <af:selectManyShuttle label="请选择显示列：" id="sms1" value="#{agentReport.selectColumns}"
+                                          leadingHeader="待选：" trailingHeader="已选：">
+                        <f:selectItems value="#{agentReport.colSelectItems}" id="si5"/>
+                    </af:selectManyShuttle>
+                   <af:button text="提交" id="b4"   actionListener="#{agentReport.selectSubmitActionListener}"/>
+                </af:dialog>
+            </af:popup>
+            <af:panelGroupLayout layout="horizontal" id="pgl2">
+                <af:selectOneChoice label="开始月份：" value="#{agentReport.beneficialTable.month}"
+                                    valueChangeListener="#{agentReport.beneficialTable.monthChangeLisener}"
+                                    autoSubmit="true" id="mSoc">
+                    <f:selectItems value="#{agentReport.selectItemListDeposit.monthSelectItemList}" id="si1"/>
+                </af:selectOneChoice>
+                <af:selectManyChoice label="状态：" value="#{agentReport.beneficialTable.channelStatusList}"
+                                     valueChangeListener="#{agentReport.beneficialTable.statusChangeLisener}"
+                                     autoSubmit="true" id="soc1">
+                    <f:selectItems value="#{agentReport.selectItemListDeposit.channelStatusSelectItemList}" id="si2"/>
+                </af:selectManyChoice>
+                <af:selectOneChoice label="业务单元：" autoSubmit="true" value="#{agentReport.beneficialTable.queryCity}"
+                                    valueChangeListener="#{agentReport.beneficialTable.cityChangeLisener}" id="citySoc"
+                                    unselectedLabel="无">
+                    <f:selectItems value="#{agentReport.selectItemListDeposit.citySelectItemList}" id="si4"/>
+                </af:selectOneChoice>
+                <af:spacer width="10" height="10" id="s2"/>
+                <af:selectOneChoice label="网格：" value="#{agentReport.beneficialTable.queryGrid}" autoSubmit="true"
+                                    valueChangeListener="#{agentReport.beneficialTable.gridChangeLisener}" id="gridSoc"
+                                    unselectedLabel="无" partialTriggers="citySoc">
+                    <f:selectItems value="#{agentReport.selectItemListDeposit.getGridSelectItemList(agentReport.beneficialTable.queryCity)}"
+                                   id="si3"/>
+                </af:selectOneChoice>
+                <af:inputText label="名称" id="it1" value="#{agentReport.beneficialTable.appendParam}"
+                              valueChangeListener="#{agentReport.beneficialTable.appendParamChangeLisener}"/>
+                <af:button text="查询" id="b1"></af:button>
+                <af:button text="导出" id="b2">
+                    <af:exportCollectionActionListener type="excelHTML" exportedId="t1"/>
+                </af:button>
+                <af:button text="选择输出列" id="b3">
+                    <af:showPopupBehavior popupId="p1"/>
+                </af:button>
+            </af:panelGroupLayout>
+            <af:table var="row" rowBandingInterval="0" id="t1" value="#{agentReport.beneficialTable.benfitTable2}"
+                      partialTriggers="::mSoc ::soc1 ::citySoc ::gridSoc ::b1 ::b4" rowSelection="single">
+                <af:forEach items="#{agentReport.selectColumns}" var="col">
+                    <af:column sortable="true" sortProperty="#{col}" headerText="#{agentReport.columnMap[col]}" id="c1">
+                        <af:outputText value="#{row[col]}" id="ot1"/>
+                    </af:column>
+                </af:forEach>
+            </af:table>
+        </af:form>
+    </af:document>
+</f:view>

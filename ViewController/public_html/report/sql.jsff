@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>xdfg</description>
+            </component>
+        </af:xmlContent>
+        <af:panelFormLayout id="pgl3" rendered="#{!(reportAdmin.currentBuildingReport==null)}">
+            <af:declarativeComponent id="x55" rendered="#{!(reportAdmin.currentBuildingReport==null)}"
+                                     viewId="/template/component/polo/EditObjectField.jsff">
+                <f:attribute name="object" value="#{reportAdmin.currentBuildingReport}"/>
+                <f:attribute name="name" value="dataSource"/>
+            </af:declarativeComponent>
+            <af:inputText label="SQL：" id="it7"  rows="3" columns="80"
+                          value="#{reportAdmin.currentBuildingReport.sql}"/>
+            <!--<af:inputText label="fromSQL：" id="it8"  rows="3" columns="80"
+                          value="#{reportAdmin.currentBuildingReport.fromSql}"/>-->
+            <!--<af:inputText label="whereSql：" id="it9" rows="3" columns="80"
+                          value="#{reportAdmin.currentBuildingReport.whereSql}"/>-->
+            <af:inputText label="实施说明：" id="it10"  rows="3" columns="80"
+                          value="#{reportAdmin.currentBuildingReport.implementRemark}"/>
+            <af:declarativeComponent id="dc6" viewId="/template/component/polo/EditObjectField.jsff">
+                <f:attribute name="object" value="#{reportAdmin.currentBuildingReport}"/>
+                <f:attribute name="name" value="isSingle"/>
+            </af:declarativeComponent>
+            <af:declarativeComponent id="dc7" viewId="/template/component/polo/EditObjectField.jsff">
+                <f:attribute name="object" value="#{reportAdmin.currentBuildingReport}"/>
+                <f:attribute name="name" value="childReport"/>
+            </af:declarativeComponent>
+            <af:inputText label="子表参数配置：" id="it11"  rows="3" columns="80"
+                          value="#{reportAdmin.currentBuildingReport.childReportLink}"/>
+        </af:panelFormLayout>
+    </af:componentDef>
+</ui:composition>
+

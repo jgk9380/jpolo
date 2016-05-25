@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="testlongruning.jsf" id="d1">
+        <af:form id="f1">
+            <af:resource type="javascript">
+              function enforcePreventUserInput(evt) {                
+                  var popup = AdfPage.PAGE.findComponentByAbsoluteId('p1');
+                  if (popup != null) {
+                      AdfPage.PAGE.addBusyStateListener(popup, handleBusyState);
+                      evt.preventUserInput();
+                  }
+              }
+              //JavaScript callback handler
+              function handleBusyState(evt) {
+                  var popup = AdfPage.PAGE.findComponentByAbsoluteId('p1');
+                  if (popup != null) {
+                      if (evt.isBusy()) {
+                          popup.show();
+                      }
+                      else {
+                          popup.hide();//remove busy state listener (important !!!) 
+                          AdfPage.PAGE.removeBusyStateListener(popup, handleBusyState);
+                      }
+                  }
+              }
+            </af:resource>
+            <af:popup id="p1" contentDelivery="immediate">
+                <af:dialog id="d2" type="none" title="Long running query ..." closeIconVisible="false">
+                    <af:panelGroupLayout id="pgl1" layout="vertical">
+                        <!--<af:image source="/images/codecorner.gif" id="i1"/>
+                        <af:image source="/images/animbar.gif" id="i2" inlineStyle="width:197px;"/>-->
+                        <af:outputText value="正在查询，请稍等" id="ot11"/>
+                    </af:panelGroupLayout>
+                </af:dialog>
+            </af:popup>
+            <af:button text="查询" action="#{reportAdmin.testlong}" id="b5">
+                <af:clientListener method="enforcePreventUserInput" type="click"/>
+            </af:button>
+        </af:form>
+    </af:document>
+</f:view>

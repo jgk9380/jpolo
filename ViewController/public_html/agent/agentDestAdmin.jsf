@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="untitled1.jsf" id="d1">
+        <af:form id="addDest" usesUpload="true">
+            <af:panelGroupLayout id="pgl3">
+                <af:panelGroupLayout id="pgl1">
+                    <af:inputText label="月份(年)：" value="#{costDestManager.agentMonthDest.yearOrMonth}" id="it1"/>
+                    <af:selectOneChoice label="代理商：" value="#{costDestManager.agentMonthDest.JCodeChannel}" id="soc1">
+                        <f:selectItems value="#{costDestManager.agentSelectItemList}" id="si1"/>
+                    </af:selectOneChoice>
+                    <af:declarativeComponent id="dc2" viewId="/template/component/polo/EditObjectField.jsff">
+                        <f:attribute name="object" value="#{costDestManager.agentMonthDest}"/>
+                        <f:attribute name="name" value="codeDestType"/>
+                    </af:declarativeComponent>
+                    <af:inputNumberSpinbox value="#{costDestManager.agentMonthDest.dest}" label="指标值：" id="ins1"/>
+                    <af:button text="提交" id="b1" actionListener="#{costDestManager.destAdd}"/>
+                </af:panelGroupLayout>
+                <af:separator id="s2"/>
+                <af:separator id="s1"/>
+                <af:panelGroupLayout id="pgl2">
+                    <af:inputFile label="请选择指标文件：" valueChangeListener="#{costDestManager.destFileUploaded}" id="if1"/>
+                    <af:button text="批量提交" id="b2"/>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="pgl4" partialTriggers="if1 b2 b3 b4">
+                    <af:panelAccordion discloseMany="false" id="pa1">
+                        <af:showDetailItem id="pane1" text="成功的数据">
+                            <af:table var="row" rowBandingInterval="0" id="t1"
+                                      value="#{costDestManager.toSaveCostList}">
+                                <af:column sortable="false" headerText="代理商" id="c1">
+                                    <af:outputText value="#{row['agent_id']}" id="ot1"/>
+                                    <f:facet name="footer">
+                                        <af:outputText value="合计" id="ot8"/>
+                                    </f:facet>
+                                </af:column>
+                                <af:column sortable="false" headerText="月份" id="c2">
+                                    <af:outputText value="#{row['yearOrMonth']}" id="ot2"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="成本类型" id="c3">
+                                    <af:outputText value="#{row['dest_type']}" id="ot3"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="成本数" id="c4">
+                                    <af:outputText value="#{row['dest']}" id="ot4"/>
+                                </af:column>
+                            </af:table>
+                        </af:showDetailItem>
+                        <af:showDetailItem id="pane2" text="错误的数据">
+                            <af:button text="导出" id="b5">
+                                <af:exportCollectionActionListener type="excelHTML" exportedId="errtab"/>
+                            </af:button>
+                            <af:table var="row" rowBandingInterval="0" id="errtab"
+                                      value="#{costDestManager.errCostList}">
+                                <af:column sortable="false" headerText="代理商" id="c5">
+                                    <af:outputText value="#{row['agent_id']}" id="ot5"/>
+                                    <f:facet name="footer">
+                                        <af:outputText value="合计" id="ot6"/>
+                                    </f:facet>
+                                </af:column>
+                                <af:column sortable="false" headerText="月份" id="c6">
+                                    <af:outputText value="#{row['yearOrMonth']}" id="ot7"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="成本类型" id="c8">
+                                    <af:outputText value="#{row['dest_type']}" id="ot9"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="成本数" id="c7">
+                                    <af:outputText value="#{row['dest']}" id="ot10"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="信息" id="c9">
+                                    <af:outputText value="#{row['error']}" id="ot11"/>
+                                </af:column>
+                            </af:table>
+                        </af:showDetailItem>
+                    </af:panelAccordion>
+                </af:panelGroupLayout>
+                <af:button text="保存" id="b3" actionListener="#{costDestManager.saveDestToDataBase}"/>
+                <af:button text="取消" id="b4" actionListener="#{costDestManager.cancel}"/>
+            </af:panelGroupLayout>
+        </af:form>
+    </af:document>
+</f:view>

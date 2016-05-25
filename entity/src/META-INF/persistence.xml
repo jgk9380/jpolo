@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="GBK" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <!--<persistence-unit name="ora11g" transaction-type="RESOURCE_LOCAL">
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="eclipselink.target-database" value="Oracle10g"/>
+            <property name="javax.persistence.jtaDataSource" value="java:/app/jdbc/jdbc/ora11gDS"/>
+            <property name="toplink.logging.logger" value="JavaLogger"/>
+            <property name="toplink.logging.level" value="FINE"/>
+            <property name="toplink.logging.level.sql" value="SQL"/>
+            <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+            <property name="javax.persistence.jdbc.password" value="A2AA300C12827E5C00E28EA940767BE2"/>
+            <property name="javax.persistence.jdbc.user" value="jemtest"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@130.34.22.3:1521:ora11g"/>
+            <property name="eclipselink.logging.logger" value="JavaLogger"/>
+            <property name="eclipselink.logging.level" value="OFF"/>
+        </properties>
+    </persistence-unit>-->
+    <persistence-unit name="entity" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>java:/app/jdbc/jdbc/ora11gDS</jta-data-source>
+        <!--指标、成本管理-->
+        <class>entity.agent.CGroup</class>
+        <!--合同管理-->
+        <class>entity.agent.City</class>
+        <class>entity.agent.Grid</class>
+        <class>entity.Employees</class>
+        <class>entity.JRole</class>
+        <class>entity.JAuthority</class>
+        <class>entity.Depart</class>
+        <class>entity.LoginUsers</class>
+        <class>entity.JMenu</class>
+        <class>entity.TableTransferTask</class>
+        <class>entity.report.Report</class>
+        <class>entity.report.ReportColumn</class>
+        <class>entity.report.ReportParam</class>
+        <class>entity.report.CodeReportType</class>
+        <class>entity.task.Task</class>
+        <class>entity.task.TaskSubject</class>
+        <class>entity.task.TaskType</class>
+        <class>entity.report.CodeReportUseType</class>
+        <class>entity.TableTransferTask</class>
+        <class>entity.report.Report</class>
+        <class>entity.report.ReportColumn</class>
+        <class>entity.report.ReportParam</class>
+        <class>entity.agent.CodeCostType</class>
+        <class>entity.agent.CodeDestType</class>
+        <class>entity.CodeReportType1</class>
+        <class>entity.agent.Channel</class>
+        <class>entity.agent.SixAddress</class>
+        <class>entity.agent.ChannelDest</class>
+        <class>entity.agent.ChannelMonthCost</class>
+        <class>entity.agent.ChannelContactDest</class>
+        <class>entity.agent.ChannelContact</class>
+        <class>entity.agent.CodeContactDestType</class>
+        <class>entity.agent.JCodeIndex</class>
+        <class>entity.agent.JCodeIndexType</class>
+        <class>entity.JChannelReformPlan</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <!--很重要，web应用中没有这个不行-->
+        <properties>
+            <property name="eclipselink.target-server" value="WebLogic_10"/>          
+            <property name="javax.persistence.jtaDataSource" value="java:/app/jdbc/jdbc/ora11gDS"/>
+            <property name="toplink.logging.logger" value="JavaLogger"/>
+            <property name="toplink.logging.level" value="FINE"/>
+            <property name="toplink.logging.level.sql" value="SQL"/>
+            <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+            <property name="javax.persistence.jdbc.password" value="A2AA300C12827E5C00E28EA940767BE2"/>
+            <property name="javax.persistence.jdbc.user" value="jemtest"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@130.34.22.3:1521:ora11g"/>
+            <property name="eclipselink.logging.logger" value="JavaLogger"/>
+            <property name="eclipselink.logging.level" value="OFF"/>
+           
+        </properties>
+    </persistence-unit>
+</persistence>

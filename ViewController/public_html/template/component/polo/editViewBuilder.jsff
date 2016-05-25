@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:componentDef var="attrs">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>editViewBuilder</description>
+                 <!--编辑查询显示-->
+                <attribute>
+                    <attribute-name>viewBuilder</attribute-name>
+                    <attribute-class>jpolo.iface.view.IViewBuilder</attribute-class>
+                    <required>true</required>
+                </attribute>
+            </component>
+        </af:xmlContent>
+        <af:dialog id="d2" title="设置查询条件，显示字段" inlineStyle="width:40vw; height:40vh;"
+                   dialogListener="#{poloViewProxy.editViewBuilderListener}">
+            <af:panelTabbed position="above" id="pt1">
+                <af:showDetailItem id="tab1" text="按字段查询">
+                    <af:panelGroupLayout id="pgl1" layout="horizontal" partialTriggers="soc1">
+                        <af:selectOneChoice label="查询字段：" id="smc1" value="#{attrs.viewBuilder.fieldName}"
+                                            contentStyle="width:20mm;" unselectedLabel="请选择" immediate="true"
+                                            autoSubmit="true">
+                            <f:selectItems value="#{attrs.viewBuilder.queryFieldSelectItemList}" id="si1"/>
+                        </af:selectOneChoice>
+                        <af:selectOneChoice label=" " id="soc1" unselectedLabel="请选择" contentStyle="width:20mm;"
+                                            value="#{attrs.viewBuilder.oper}" immediate="true" autoSubmit="true">
+                            <f:selectItems value="#{attrs.viewBuilder.operSelectItemList}" id="si2"/>
+                        </af:selectOneChoice>
+                        <af:inputText label=" " contentStyle="width:20mm;" id="it_vaue"
+                                      value="#{attrs.viewBuilder.value}"/>
+                        <af:inputText label=" " contentStyle="width:20mm;" id="it_value2"
+                                      value="#{attrs.viewBuilder.value2}"
+                                      rendered="#{attrs.viewBuilder.oper=='between'}" immediate="true"/>
+                    </af:panelGroupLayout>
+                </af:showDetailItem>
+                <af:showDetailItem id="tab2" text="手工查询">
+                    <af:panelGroupLayout id="pgl2" layout="horizontal">
+                        <af:inputText label="查询语句:" id="it2" contentStyle="width:80mm;" value="#{attrs.viewBuilder.jql}"
+                                      rows="3"/>
+                        <af:spacer width="10" height="20" id="s2"/>
+                    </af:panelGroupLayout>
+                </af:showDetailItem>
+                <af:showDetailItem id="tab3" text="设置显示字段">
+                    <af:selectManyShuttle trailingHeader="可选" leadingHeader="已选" label="选择显示字段" id="soc2"
+                                          value="#{attrs.viewBuilder.tableShowFields}" autoSubmit="true"
+                                          immediate="true" inlineStyle="height:25vh;">
+                        <f:selectItems value="#{attrs.viewBuilder.tableFieldSelectItemList}" id="si3"/>
+                    </af:selectManyShuttle>
+                </af:showDetailItem>
+            </af:panelTabbed>
+        </af:dialog>
+    </af:componentDef>
+</ui:composition>

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:componentDef var="attr">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description>param</description>
+                <attribute>
+                    <attribute-name>rh</attribute-name>
+                    <attribute-class>report.ReportHolder</attribute-class>
+                    <required>true</required>
+                </attribute>
+            </component>
+        </af:xmlContent>
+        <af:forEach items="#{attr.rh.report.reportParams}" var="rParam">
+          <af:group rendered="#{!attr.rh.isSelectAble(rParam)}" id="dc_g1">
+                <c:if test="#{rParam.type=='String'}">
+                    <af:inputText label="#{rParam.label}:" value="#{attr.rh.paramMap[rParam.name]}"
+                                  id="it#{rParam.id}"/>
+                </c:if>
+                <c:if test="#{rParam.type=='Date'}">
+                    <af:inputDate label="#{rParam.label}:" value="#{attr.rh.paramMap[rParam.name]}"
+                                  id="id#{rParam.id}"/>
+                </c:if>
+                <c:if test="#{rParam.type=='Number'}"> 
+                <!--不会刷新-->
+                    <af:inputNumberSpinbox label="#{rParam.label}:"
+                                           value="#{attr.rh.paramMap[rParam.name]}"
+                                           id="id#{rParam.id}"/>
+                </c:if>
+            </af:group>
+            <af:group rendered="#{attr.rh.isSelectAble(rParam)}" id="dc_g2">
+                <c:if test="#{rParam.isSingle}">
+                    <af:selectOneChoice label="#{rParam.label}:" id="smc#{rParam.id}"
+                                        value="#{attr.rh.paramMap[rParam.name]}">
+                        <f:selectItems value="#{attr.rh.getSelectItemList(rParam)}"
+                                       id="si#{rParam.id}"/>
+                    </af:selectOneChoice>
+                </c:if>
+                <c:if test="#{!rParam.isSingle}">
+                    <af:selectManyChoice label="#{rParam.label}:" id="soc#{rParam.id}"
+                                         value="#{attr.rh.paramMap[rParam.name]}">
+                        <f:selectItems value="#{attr.rh.getSelectItemList(rParam)}"
+                                       id="si#{rParam.id}"/>
+                    </af:selectManyChoice>
+                </c:if>
+            </af:group>
+        </af:forEach>
+    </af:componentDef>
+</ui:composition>
+
+

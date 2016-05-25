@@ -1,0 +1,6 @@
+<?xml version = '1.0' encoding = 'GBK'?>
+<jpsConfig xmlns="http://xmlns.oracle.com/oracleas/schema/11/jps-config-11_1.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.oracle.com/oracleas/schema/11/jps-config-11_1.xsd jps-config-11_1.xsd">
+  <jpsContexts default="jpolo">
+    <jpsContext name="jpolo"></jpsContext>
+  </jpsContexts>
+</jpsConfig>
